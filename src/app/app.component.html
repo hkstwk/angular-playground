@@ -1,18 +1,25 @@
-<form class="ui large form segment">
-  <h3 class="ui header">Add a Link</h3>
-  <div class="field">
-    <label for="title">Title:</label>
-    <input name="title" id="title" #newtitle>
+<!-- Menu Bar -->
+<div class="ui menu">
+  <div class="ui container">
+    <a href="#" class="header item">
+      <img class="logo" src="./assets/images/ng-book-2-minibook.png">
+      ng-book 2
+    </a>
+    <div class="header item borderless">
+      <h1 class="ui header">
+        ng-book-2 on Angular 7
+      </h1>
+    </div>
   </div>
-  <div class="field">
-    <label for="link">Link:</label>
-    <input name="link" id="link" #newlink>
+</div>
+<div class="ui link large horizontal list">
+      <a class="active item" [routerLink]="['reddit']">Reddit</a>
+      <a class="item" [routerLink]="['inventory']">Inventory</a>
+      <a class="item" [routerLink]="['directives']">Directives</a>
+      <a class="item" [routerLink]="['about']">About</a>
+</div>
+<div id="content">
+  <div class="ui container">
+    <router-outlet></router-outlet>
   </div>
-  <button (click)="addArticle(newtitle, newlink)"
-          class="ui positive right floated button">
-    Submit link
-  </button>
-</form>
-<div class="ui grid posts">
-  <app-article *ngFor="let article of sortedArticles()" [article]="article"></app-article>
 </div>
