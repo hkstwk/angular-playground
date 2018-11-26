@@ -1,7 +1,7 @@
 <h4 class="ui horizontal divider header">
   *ngSwitchCase Example / current choice is {{ choice }}
 </h4>
-<div class="ui raised segment">
+<div class="ui orange raised segment">
   <ul [ngSwitch]="choice">
     <li *ngSwitchCase="1">First choice</li>
     <li *ngSwitchCase="2">Second choice</li>
@@ -12,5 +12,5 @@
   </ul>
 </div>
 <div style="margin-top:20px;">
-<button class="ui primary button" (click)="nextChoice()">Next choice</button>
+<button class="ui positive button" (click)="nextChoice()">Next choice</button>
 </div>
