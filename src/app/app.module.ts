@@ -13,12 +13,15 @@ import { ProductImageComponent } from './product-image/product-image.component';
 import { PriceDisplayComponent } from './price-display/price-display.component';
 import { ProductDepartmentComponent } from './product-department/product-department.component';
 import { DirectivesComponent } from './directives/directives.component';
+import { DemoSkuComponent } from './demo-sku/demo-sku.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
   { path: 'reddit', component: RedditComponent },
   { path: 'inventory', component: InventoryComponent},
   { path: 'directives', component: DirectivesComponent},
+  { path: 'form', component: DemoSkuComponent},
   { path: 'about', component: AboutComponent }
 ];
 
@@ -35,11 +38,14 @@ const routes: Routes = [
     ProductImageComponent,
     PriceDisplayComponent,
     ProductDepartmentComponent,
-    DirectivesComponent
+    DirectivesComponent,
+    DemoSkuComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

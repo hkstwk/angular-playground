@@ -1,0 +1,40 @@
+<div class="ui raised segment">
+  <h2 class="ui header">Demo Form: Sku</h2>
+  <form #f="ngForm"
+        (ngSubmit)="onSubmit(f.value)"
+        class="ui form">
+    <div class="field">
+      <label for="skuInput">SKU</label>
+      <input type="text"
+             id="skuInput"
+             placeholder="#sku"
+             name="sku" ngModel>
+    </div>
+    <button type="submit" class="ui positive button">Submit</button>
+  </form>
+</div>
+<div class="ui raised segment">
+  <h2 class="ui header">Demo Form: Sku with Builder</h2>
+  <h3 class="ui header">Two-way binding of sku : <span>{{skuString}}</span></h3>
+  <form [formGroup]="myForm"
+        (ngSubmit)="onSubmitReactive(myForm.value)"
+        class="ui form"
+         [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
+    <div class="field"
+         [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
+      <label for="skuInputReactive">SKU</label>
+      <input type="text"
+             id="skuInputReactive"
+             name="sku"
+             placeholder="#sku"
+             [formControl]="myForm.controls['sku']"
+             [(ngModel)]="skuString"
+      >
+    </div>
+    <div *ngIf="!myForm.valid" class="ui negative message">Form is invalid</div>
+    <div *ngIf="!myForm.controls['sku'].valid" class="ui negative message">SKU is invalid</div>
+    <div *ngIf="myForm.controls['sku'].hasError('required')" class="ui negative message">SKU is required</div>
+    <div *ngIf="myForm.controls['sku'].hasError('invalidSku')" class="ui negative message">SKU must begin with <span>123</span></div>
+    <button type="submit" class="ui positive button">Submit</button>
+  </form>
+</div>
