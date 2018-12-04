@@ -6,7 +6,8 @@
            type="text"
            name="url"
            [formControl]="myForm.controls['url']"
-           #url>
+           #url
+           (keydown.enter)="makeRequest(url.value)">
   </div>
   <button class="ui button positive left floated" type="button" (click)="makeRequest(url.value)">Make Request</button>
   <button class="ui button secondary left floated" type="button" (click)="reset()">Reset</button>
