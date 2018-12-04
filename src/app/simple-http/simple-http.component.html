@@ -1,0 +1,16 @@
+<form [formGroup]="myForm" class="ui large form segment">
+  <h2>Basic Request</h2>
+  <div class="field">
+    <label for="url">URL</label>
+    <input id="url"
+           type="text"
+           name="url"
+           [formControl]="myForm.controls['url']"
+           #url>
+  </div>
+  <button class="ui button positive left floated" type="button" (click)="makeRequest(url.value)" value="https://jsonplaceholder.typicode.com/posts">Make Request</button>
+</form>
+<div *ngIf="loading">loading...</div>
+<div *ngIf="!loading" class="ui message">
+  <pre>{{data | json }}</pre>
+</div>

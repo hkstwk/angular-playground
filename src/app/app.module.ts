@@ -15,6 +15,8 @@ import { ProductDepartmentComponent } from './product-department/product-departm
 import { DirectivesComponent } from './directives/directives.component';
 import { DemoSkuComponent } from './demo-sku/demo-sku.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SimpleHttpComponent } from './simple-http/simple-http.component';
+import { HttpClientModule } from "@angular/common/http";
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
@@ -22,6 +24,7 @@ const routes: Routes = [
   { path: 'inventory', component: InventoryComponent},
   { path: 'directives', component: DirectivesComponent},
   { path: 'form', component: DemoSkuComponent},
+  { path: 'http', component: SimpleHttpComponent },
   { path: 'about', component: AboutComponent }
 ];
 
@@ -39,12 +42,14 @@ const routes: Routes = [
     PriceDisplayComponent,
     ProductDepartmentComponent,
     DirectivesComponent,
-    DemoSkuComponent
+    DemoSkuComponent,
+    SimpleHttpComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],
