@@ -8,9 +8,10 @@
            [formControl]="myForm.controls['url']"
            #url>
   </div>
-  <button class="ui button positive left floated" type="button" (click)="makeRequest(url.value)" value="https://jsonplaceholder.typicode.com/posts">Make Request</button>
+  <button class="ui button positive left floated" type="button" (click)="makeRequest(url.value)">Make Request</button>
+  <button class="ui button secondary left floated" type="button" (click)="reset()">Reset</button>
 </form>
 <div *ngIf="loading">loading...</div>
-<div *ngIf="!loading" class="ui message">
-  <pre>{{data | json }}</pre>
+<div *ngIf="data" class="ui message">
+  <pre>{{ data | json }}</pre>
 </div>
