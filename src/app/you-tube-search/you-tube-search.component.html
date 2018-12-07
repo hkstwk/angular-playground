@@ -1,5 +1,5 @@
-<div class='ui grid'>
-  <div class="sixteen wide column">
+<div class="ui one column grid container">
+  <div class="column">
     <h1>YouTube Search
       <img
         style="float: right;"
@@ -8,15 +8,15 @@
       />
     </h1>
   </div>
-  <div class="ui four column doubling stackable grid container">
+  <div class="ui one column grid container">
     <div class="column">
       <app-search-box
         (loading)="loading = $event"
         (results)="updateResults($event)"
         ></app-search-box>
     </div>
-    <div class="ui four column doubling stackable grid container">
-      <app-search-result
+    <div class="ui three column grid container">
+      <app-search-result class="column"
         *ngFor="let result of results"
         [result]="result">
       </app-search-result>

@@ -13,7 +13,7 @@ export class SearchBoxComponent implements OnInit {
   @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() results: EventEmitter<SearchResult[]> = new EventEmitter<SearchResult[]>();
 
-  constructor(private youtube: YouTubeSearchService, private el: ElementRef<any, any>) { }
+  constructor(private youtube: YouTubeSearchService, private el: ElementRef<HTMLInputElement, any>) { }
 
   ngOnInit() {
     const obs = fromEvent(this.el.nativeElement, 'keyup')
