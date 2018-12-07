@@ -1,0 +1,25 @@
+<div class='ui grid'>
+  <div class="sixteen wide column">
+    <h1>YouTube Search
+      <img
+        style="float: right;"
+        *ngIf="loading"
+        src='assets/images/loading.gif'
+      />
+    </h1>
+  </div>
+  <div class="ui four column doubling stackable grid container">
+    <div class="column">
+      <app-search-box
+        (loading)="loading = $event"
+        (results)="updateResults($event)"
+        ></app-search-box>
+    </div>
+    <div class="ui four column doubling stackable grid container">
+      <app-search-result
+        *ngFor="let result of results"
+        [result]="result">
+      </app-search-result>
+    </div>
+  </div>
+</div>

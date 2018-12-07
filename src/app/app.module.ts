@@ -17,6 +17,10 @@ import { DemoSkuComponent } from './demo-sku/demo-sku.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SimpleHttpComponent } from './simple-http/simple-http.component';
 import { HttpClientModule } from "@angular/common/http";
+import { YouTubeSearchComponent } from './you-tube-search/you-tube-search.component';
+import {youTubeSearcInjectables} from "./you-tube-search/you-tube-search.injectables";
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
@@ -25,6 +29,7 @@ const routes: Routes = [
   { path: 'directives', component: DirectivesComponent},
   { path: 'form', component: DemoSkuComponent},
   { path: 'http', component: SimpleHttpComponent },
+  { path: 'youtube_search', component: YouTubeSearchComponent},
   { path: 'about', component: AboutComponent }
 ];
 
@@ -43,7 +48,10 @@ const routes: Routes = [
     ProductDepartmentComponent,
     DirectivesComponent,
     DemoSkuComponent,
-    SimpleHttpComponent
+    SimpleHttpComponent,
+    YouTubeSearchComponent,
+    SearchBoxComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +60,7 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [youTubeSearcInjectables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
