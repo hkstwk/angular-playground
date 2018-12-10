@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SimpleHttpComponent } from './simple-http/simple-http.component';
 import { HttpClientModule } from "@angular/common/http";
 import { YouTubeSearchComponent } from './you-tube-search/you-tube-search.component';
-import {youTubeSearcInjectables} from "./you-tube-search/you-tube-search.injectables";
+import { youTubeSearcInjectables } from "./you-tube-search/you-tube-search.injectables";
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { EulerComponent } from './euler/euler.component';

@@ -1,3 +1,37 @@
-<p>
-  euler works!
-</p>
+<div class="ui raised segment">
+  <h2 class="ui header">Project Euler</h2>
+  <h3><a href="https://projecteuler.net/problem=1">Problem 1- Sum of multiples</a></h3>
+  <form #f="ngForm"
+        (ngSubmit)="onSubmit(f.value)"
+        class="ui form">
+    <div class="field">
+      <label for="multiple1">multilpe 1</label>
+      <input type="number"
+             id="multiple1"
+             placeholder="Positive number..."
+             name="multiple1" ngModel
+             [(ngModel)]="multiple1">
+    </div>
+    <div class="field">
+      <label for="multiple2">multilpe 2</label>
+      <input type="number"
+             id="multiple2"
+             placeholder="Positive number..."
+             name="multiple2" ngModel
+             [(ngModel)]="multiple2">
+    </div>
+    <div class="field">
+      <label for="limit">limit</label>
+      <input type="number"
+             id="limit"
+             placeholder="Positive number..."
+             name="limit" ngModel
+             [(ngModel)]="limit">
+    </div>
+    <button type="submit" class="ui positive button">Calculate</button>
+  </form>
+</div>
+<div *ngIf="loading">loading...</div>
+<div *ngIf="data" class="ui message">
+  <pre>{{ data | json }}</pre>
+</div>
