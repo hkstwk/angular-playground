@@ -11,12 +11,12 @@ import {HttpErrorResponse} from "@angular/common/http";
 
 export class EulerComponent implements OnInit {
 
-  private loading: boolean = false;
-  private data: any;
+  public loading: boolean = false;
+  public data: any;
 
-  private multiple1: number;
-  private multiple2: number;
-  private limit: number;
+  public multiple1: number;
+  public multiple2: number;
+  public limit: number;
 
   constructor(private eulerService: EulerService) {
     this.initializeInputs();
