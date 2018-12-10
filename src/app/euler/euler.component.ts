@@ -12,8 +12,6 @@ import {HttpErrorResponse} from "@angular/common/http";
 
 export class EulerComponent implements OnInit {
 
-  private errorResp: HttpErrorResponse;
-
   data: any = 'waiting...'
   multiple1: number = 3;
   multiple2: number = 5;
@@ -31,7 +29,6 @@ export class EulerComponent implements OnInit {
   }
 
   getEuler(): void {
-    this.errorResp = null;
     this.eulerService.getEuler001(this.data)
       .subscribe(
         resp => this.handleResp(resp),
@@ -44,7 +41,6 @@ export class EulerComponent implements OnInit {
 
 
   private handleError(err: HttpErrorResponse): void {
-    console.log("Oops", err.error.validations);
     this.data = err;
   }
 }
