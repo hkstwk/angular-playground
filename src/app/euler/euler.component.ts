@@ -11,30 +11,40 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 
 export class EulerComponent implements OnInit {
-  private euler001req: Euler001Request = {
-    multiple1: 3,
-    multiple2: 5,
-    limit: 10
-  };
 
-  private multiple1: number = 3;
-  private multiple2: number = 5;
-  private limit:     number = 10;
-
-  private euler001resp: Euler001Response;
   private errorResp: HttpErrorResponse;
-  private respAvailable: boolean;
 
   data: any = 'waiting...'
+  multiple1: number = 3;
+  multiple2: number = 5;
+  limit: number = 10;
 
-  constructor() { }
+
+  constructor(private eulerService: EulerService) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: any): void {
     this.data = form;
-    console.log(' you submitted value: ', form);
-    console.log(' you submitted value: ', this.data);
+    this.getEuler();
+  }
+
+  getEuler(): void {
+    this.errorResp = null;
+    this.eulerService.getEuler001(this.data)
+      .subscribe(
+        resp => this.handleResp(resp),
+        error => this.handleError(error))
+  }
+
+  private handleResp(resp: Euler001Response): void {
+    this.data = resp;
+  }
+
+
+  private handleError(err: HttpErrorResponse): void {
+    console.log("Oops", err.error.validations);
+    this.data = err;
   }
 }

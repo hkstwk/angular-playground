@@ -6,7 +6,7 @@
         class="ui form">
     <div class="field">
       <label for="multiple1">multilpe 1</label>
-      <input type="number"
+      <input type="text"
              id="multiple1"
              placeholder="Positive number..."
              name="multiple1" ngModel
@@ -14,7 +14,7 @@
     </div>
     <div class="field">
       <label for="multiple2">multilpe 2</label>
-      <input type="number"
+      <input type="text"
              id="multiple2"
              placeholder="Positive number..."
              name="multiple2" ngModel
@@ -22,7 +22,7 @@
     </div>
     <div class="field">
       <label for="limit">limit</label>
-      <input type="number"
+      <input type="text"
              id="limit"
              placeholder="Positive number..."
              name="limit" ngModel
@@ -31,7 +31,6 @@
     <button type="submit" class="ui positive button">Calculate</button>
   </form>
 </div>
-<div *ngIf="loading">loading...</div>
 <div *ngIf="data" class="ui message">
   <pre>{{ data | json }}</pre>
 </div>
