@@ -14,7 +14,8 @@ export class SimpleHttpComponent implements OnInit {
 
   constructor(private http: HttpClient, fb: FormBuilder) {
     this.myForm = fb.group({
-      'url': ['https://jsonplaceholder.typicode.com/posts']
+      // 'url': ['https://jsonplaceholder.typicode.com/posts']
+      'url': ['https://api.github.com/repos/hkstwk/euler/contents/Euler/src/nl/hkolvoort/euler/P001_SumOfMultiples.java']
     });
   }
 
@@ -28,7 +29,7 @@ export class SimpleHttpComponent implements OnInit {
       .get(url)
       .subscribe(
         (data: any) => {
-        this.data = data;
+        this.data = atob(data.content);
         this.loading = false;
       },
       (err: any) => {

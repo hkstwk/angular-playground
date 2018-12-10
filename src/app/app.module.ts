@@ -21,15 +21,17 @@ import { YouTubeSearchComponent } from './you-tube-search/you-tube-search.compon
 import {youTubeSearcInjectables} from "./you-tube-search/you-tube-search.injectables";
 import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { EulerComponent } from './euler/euler.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
   { path: 'reddit', component: RedditComponent },
-  { path: 'inventory', component: InventoryComponent},
-  { path: 'directives', component: DirectivesComponent},
-  { path: 'form', component: DemoSkuComponent},
+  { path: 'inventory', component: InventoryComponent },
+  { path: 'directives', component: DirectivesComponent },
+  { path: 'form', component: DemoSkuComponent },
   { path: 'http', component: SimpleHttpComponent },
-  { path: 'youtube_search', component: YouTubeSearchComponent},
+  { path: 'youtube_search', component: YouTubeSearchComponent },
+  { path: 'euler', component: EulerComponent },
   { path: 'about', component: AboutComponent }
 ];
 
@@ -51,7 +53,8 @@ const routes: Routes = [
     SimpleHttpComponent,
     YouTubeSearchComponent,
     SearchBoxComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    EulerComponent
   ],
   imports: [
     BrowserModule,
