@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {EulerService} from "./euler.service";
-import {Euler001Request} from "./euler001request";
 import {Euler001Response} from "./euler001response";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -12,27 +11,26 @@ import {HttpErrorResponse} from "@angular/common/http";
 
 export class EulerComponent implements OnInit {
 
-  data: any = 'waiting...'
-  multiple1: number = 3;
-  multiple2: number = 5;
-  limit: number = 10;
+  private loading: boolean = false;
+  private data: any;
 
+  private multiple1: number;
+  private multiple2: number;
+  private limit: number;
 
-  constructor(private eulerService: EulerService) { }
-
-  ngOnInit() {
+  constructor(private eulerService: EulerService) {
+    this.initializeInputs();
   }
 
-  onSubmit(form: any): void {
-    this.data = form;
-    this.getEuler();
-  }
+  ngOnInit() {}
 
-  getEuler(): void {
-    this.eulerService.getEuler001(this.data)
+  getEuler(data: any): void {
+    this.loading = true;
+    this.eulerService.getEuler001(data)
       .subscribe(
         resp => this.handleResp(resp),
         error => this.handleError(error))
+    this.loading = false;
   }
 
   private handleResp(resp: Euler001Response): void {
@@ -42,5 +40,17 @@ export class EulerComponent implements OnInit {
 
   private handleError(err: HttpErrorResponse): void {
     this.data = err;
+  }
+
+  reset(): void {
+    this.loading = false;
+    this.data = null;
+    this.initializeInputs();
+  }
+
+  private initializeInputs() {
+    this.multiple1 = 3;
+    this.multiple2 = 5;
+    this.limit = 10;
   }
 }

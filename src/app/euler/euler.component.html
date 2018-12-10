@@ -2,7 +2,7 @@
   <h2 class="ui header">Project Euler</h2>
   <h3><a href="https://projecteuler.net/problem=1">Problem 1- Sum of multiples</a></h3>
   <form #f="ngForm"
-        (ngSubmit)="onSubmit(f.value)"
+        (ngSubmit)="getEuler(f.value)"
         class="ui form">
     <div class="field">
       <label for="multiple1">multilpe 1</label>
@@ -29,8 +29,10 @@
              [(ngModel)]="limit">
     </div>
     <button type="submit" class="ui positive button">Calculate</button>
+    <button class="ui button secondary" type="button" (click)="reset()">Reset</button>
   </form>
 </div>
+<div *ngIf="loading">loading...</div>
 <div *ngIf="data" class="ui message">
   <pre>{{ data | json }}</pre>
 </div>
