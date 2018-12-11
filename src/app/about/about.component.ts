@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CounterService} from "./counter.service";
 import {Counter} from "../model/counter.model";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-about',
@@ -10,26 +10,31 @@ import {Observable} from "rxjs";
 })
 export class AboutComponent implements OnInit {
 
-  counterStream: Observable<Counter>;
-  counters: Counter[] = [ new Counter(2)];
-
-  counter : number = 0;
+  counterStream: Subscription;
+  counter: Counter;
+  index: number = 0;
 
   constructor(private counterService: CounterService) {
-    this.counterStream = counterService.currentCounter;
-    this.counterService.counters.subscribe(
-      (counters: Counter[]) => {
-        this.counters = counters;
-      }
-    )
+    this.counterStream = this.counterService.getCurrentCounter()
+      .subscribe(counter => {
+        this.counter = counter
+       });
   }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  add() {
+    this.index += 1;
+    this.counterService.setCurrentCounter(new Counter(this.index));
   }
 
-  onClick() {
-    this.counter += 1;
-    this.counterService.setCurrentCounter(new Counter(this.counter));
+  substract() {
+    this.index -= 1;
+    this.counterService.setCurrentCounter(new Counter(this.index));
   }
 
+  clear() {
+    this.index = 0;
+    this.counterService.clearCurrentCounter();
+  }
 }

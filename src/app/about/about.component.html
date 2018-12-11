@@ -1,8 +1,9 @@
 <div class="ui raised segment">
   <h2 class="ui header">Observables</h2>
-    <button id="btn" type="button" class="ui positive button" (click)="onClick()">Submit</button>
+    <button type="button" class="ui positive button" (click)="add()">Add</button>
+    <button type="button" class="ui negative button" (click)="substract()">Substract</button>
+    <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
 </div>
-<div class="ui message">
-  <pre>{{ counterStream._value | json }}</pre>
-  <pre>{{ counters | json }}</pre>
+<div *ngIf="counter" class="ui message">
+  <pre>{{ counter | json }}</pre>
 </div>
