@@ -11,11 +11,17 @@ import {Observable} from "rxjs";
 export class AboutComponent implements OnInit {
 
   counterStream: Observable<Counter>;
+  counters: Counter[] = [ new Counter(2)];
 
   counter : number = 0;
 
   constructor(private counterService: CounterService) {
     this.counterStream = counterService.currentCounter;
+    this.counterService.counters.subscribe(
+      (counters: Counter[]) => {
+        this.counters = counters;
+      }
+    )
   }
 
   ngOnInit() {
