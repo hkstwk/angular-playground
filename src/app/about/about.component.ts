@@ -16,9 +16,13 @@ export class AboutComponent implements OnInit {
 
   constructor(private messageService: MessageService) {
     this.messageStream = this.messageService.getCurrentMessage()
-      .subscribe(counter => {
-        this.message = counter
-       });
+      .subscribe(
+        counter => {
+          console.log("onNext");
+          this.message = counter },
+        () => { console.log("onError") },
+        () => { console.log("onComplete") }
+        );
   }
 
   ngOnInit() { }

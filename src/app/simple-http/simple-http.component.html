@@ -14,5 +14,5 @@
 </form>
 <div *ngIf="loading">loading...</div>
 <div *ngIf="data" class="ui message">
-  <pre>{{ data }}</pre>
+  <pre>{{ data | json }}</pre>
 </div>

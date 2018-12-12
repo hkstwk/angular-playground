@@ -29,7 +29,7 @@ export class SimpleHttpComponent implements OnInit {
       .get(url)
       .subscribe(
         (data: any) => {
-        this.data = atob(data.content);
+        this.data = data;
         this.loading = false;
       },
       (err: any) => {
