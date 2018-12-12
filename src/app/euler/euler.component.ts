@@ -51,6 +51,6 @@ export class EulerComponent implements OnInit {
   private initializeInputs() {
     this.multiple1 = 3;
     this.multiple2 = 5;
-    this.limit = 10;
+    this.limit = 1000;
   }
 }

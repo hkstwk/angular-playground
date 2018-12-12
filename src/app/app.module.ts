@@ -23,7 +23,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { EulerComponent } from './euler/euler.component';
 import {EulerService} from "./euler/euler.service";
-import {CounterService} from "./about/counter.service";
+import {MessageService} from "./about/message.service";
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'http', component: SimpleHttpComponent },
   { path: 'youtube_search', component: YouTubeSearchComponent },
   { path: 'euler', component: EulerComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'observables', component: AboutComponent }
 ];
 
 
@@ -65,7 +65,7 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [EulerService, CounterService, youTubeSearcInjectables],
+  providers: [EulerService, MessageService, youTubeSearcInjectables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CounterService} from "./counter.service";
-import {Counter} from "../model/counter.model";
-import {Observable, Subscription} from "rxjs";
+import {MessageService} from "./message.service";
+import {Message} from "../model/message.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-about',
@@ -10,14 +10,14 @@ import {Observable, Subscription} from "rxjs";
 })
 export class AboutComponent implements OnInit {
 
-  counterStream: Subscription;
-  counter: Counter;
+  messageStream: Subscription;
+  message: Message;
   index: number = 0;
 
-  constructor(private counterService: CounterService) {
-    this.counterStream = this.counterService.getCurrentCounter()
+  constructor(private messageService: MessageService) {
+    this.messageStream = this.messageService.getCurrentMessage()
       .subscribe(counter => {
-        this.counter = counter
+        this.message = counter
        });
   }
 
@@ -25,16 +25,16 @@ export class AboutComponent implements OnInit {
 
   add() {
     this.index += 1;
-    this.counterService.setCurrentCounter(new Counter(this.index));
+    this.messageService.setCurrentMessage(new Message(this.index));
   }
 
   substract() {
     this.index -= 1;
-    this.counterService.setCurrentCounter(new Counter(this.index));
+    this.messageService.setCurrentMessage(new Message(this.index));
   }
 
   clear() {
     this.index = 0;
-    this.counterService.clearCurrentCounter();
+    this.messageService.clearCurrentMessage();
   }
 }
