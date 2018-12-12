@@ -7,3 +7,7 @@
 <div *ngIf="message" class="ui message">
   <pre>{{ message | json }}</pre>
 </div>
+<div class="ui message">
+  <pre>{{ requestStream  | async }}</pre>
+  <pre>{{ responseMetastream  | async }}</pre>
+</div>

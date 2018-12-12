@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
-import {Subscription} from "rxjs";
+import {Subscription, Observable, from} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-about',
@@ -13,6 +14,12 @@ export class AboutComponent implements OnInit {
   messageStream: Subscription;
   message: Message;
   index: number = 0;
+
+  requestStream: Observable<any> = from(["https://api.github.com/users"]);
+  responseMetastream = this.requestStream
+    .pipe(
+      map( (response: string ) => {return response.toUpperCase(); }
+    ));
 
   constructor(private messageService: MessageService) {
     this.messageStream = this.messageService.getCurrentMessage()
