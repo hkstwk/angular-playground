@@ -3,6 +3,9 @@ import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
 import {Subscription, Observable, from} from "rxjs";
 import {map} from "rxjs/operators";
+import {HttpClient} from "@angular/common/http";
+import {mergeMap} from "rxjs/internal/operators";
+import {GithubUser} from "../model/github-user.model";
 
 @Component({
   selector: 'app-about',
@@ -14,22 +17,32 @@ export class AboutComponent implements OnInit {
   messageStream: Subscription;
   message: Message;
   index: number = 0;
+  githubUsers: GithubUser[] = new Array<GithubUser>();
 
   requestStream: Observable<any> = from(["https://api.github.com/users"]);
-  responseMetastream = this.requestStream
-    .pipe(
-      map( (response: string ) => {return response.toUpperCase(); }
-    ));
 
-  constructor(private messageService: MessageService) {
+  responseStream = this.requestStream
+    .pipe(
+      mergeMap( requestUrl => {
+        return this.http.get(requestUrl.toString());
+      })
+    );
+
+  constructor(private messageService: MessageService, private http: HttpClient) {
     this.messageStream = this.messageService.getCurrentMessage()
       .subscribe(
-        counter => {
+        response => {
           console.log("onNext");
-          this.message = counter },
+          this.message = response },
         () => { console.log("onError") },
         () => { console.log("onComplete") }
         );
+
+    this.responseStream.subscribe(
+      (response : any) => {
+        this.githubUsers = response;
+      }
+    )
   }
 
   ngOnInit() { }

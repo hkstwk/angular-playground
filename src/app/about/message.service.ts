@@ -1,7 +1,6 @@
 import {Message} from "../model/message.model";
 import {Subject, BehaviorSubject, Observable} from "rxjs";
 import {Injectable} from "@angular/core";
-import {flatMap} from "tslint/lib/utils";
 
 
 @Injectable()
@@ -22,4 +21,5 @@ export class MessageService {
   public getCurrentMessage() : Observable<Message> {
     return this.currentMessage.asObservable();
   }
+
 }

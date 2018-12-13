@@ -1,13 +1,18 @@
 <div class="ui raised segment">
   <h2 class="ui header">Observables</h2>
-    <button type="button" class="ui icon positive button" (click)="add()"><i class="plus icon"></i></button>
-    <button type="button" class="ui icon negative button" (click)="substract()"><i class="minus icon"></i></button>
-    <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
+  <button type="button" class="ui icon positive button" (click)="add()"><i class="plus icon"></i></button>
+  <button type="button" class="ui icon negative button" (click)="substract()"><i class="minus icon"></i></button>
+  <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
 </div>
 <div *ngIf="message" class="ui message">
   <pre>{{ message | json }}</pre>
 </div>
 <div class="ui message">
+  <div *ngFor="let usr of githubUsers">
+    <div>{{usr.id}} - {{ usr.login}}</div>
+  </div>
+  <pre>{{ githubUsers | json }}</pre>
+  <pre></pre>
   <pre>{{ requestStream  | async }}</pre>
-  <pre>{{ responseMetastream  | async }}</pre>
+  <pre>{{ responseStream | async | json}}</pre>
 </div>
