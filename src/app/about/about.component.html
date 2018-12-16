@@ -2,17 +2,25 @@
   <h2 class="ui header">Observables</h2>
   <button type="button" class="ui icon positive button" (click)="add()"><i class="plus icon"></i></button>
   <button type="button" class="ui icon negative button" (click)="substract()"><i class="minus icon"></i></button>
+  <button type="button" class="ui primary button" #btn>Double click or not...</button>
   <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
+</div>
+<div *ngIf="doubleClickMessage" class="ui message positive">
+  {{ doubleClickMessage }}
+</div>
+<div *ngIf="noDoubleClickMessage" class="ui message error">
+  {{ noDoubleClickMessage }}
 </div>
 <div *ngIf="message" class="ui message">
   <pre>{{ message | json }}</pre>
 </div>
 <div class="ui message">
   <div *ngFor="let usr of githubUsers">
+    <div>
+      <img src={{usr.avatar_url}} class="ui mini circular image"/>
+    </div>
     <div>{{usr.id}} - {{ usr.login}}</div>
   </div>
-  <pre>{{ githubUsers | json }}</pre>
-  <pre></pre>
   <pre>{{ requestStream  | async }}</pre>
   <pre>{{ responseStream | async | json}}</pre>
 </div>
