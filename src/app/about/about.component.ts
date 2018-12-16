@@ -17,6 +17,7 @@ export class AboutComponent implements OnInit {
 
   @ViewChild('btn') btn : ElementRef<any>;
   doubleClickMessage: string;
+  doubleClickMessage2: string;
   noDoubleClickMessage: string;
 
   messageStream: Subscription;
@@ -52,29 +53,44 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     const toLength = a => a.length;
-    const rxBtn = this.btn.nativeElement;                   // get the button element
-    const click$ = fromEvent(rxBtn, 'click');               // listen for clicks
-    const debounced$ = click$.pipe(debounceTime(250));      // listen for 250 ms then emit click
-    const buffered$ = click$.pipe(buffer(debounced$));      // collect all clicks till debounce
-    const clickCount$ = buffered$.pipe(map(toLength));      // map buffered$ to #clicks
-    const doubleClick$ = clickCount$.pipe(filter(x => x === 2)); // only double clicks
-    const notDoubleClick$ = clickCount$.pipe(filter(x => x !== 2)); // only double clicks
+    const rxBtn = this.btn.nativeElement;                           // get the button element
+    const click$ = fromEvent(rxBtn, 'click');                       // listen for clicks
+    const debounced$ = click$.pipe(debounceTime(250));              // listen for 250 ms then emit click
+    const buffered$ = click$.pipe(buffer(debounced$));              // collect all clicks till debounce
+    const clickCount$ = buffered$.pipe(map(toLength));              // map buffered$ to #clicks
+    const doubleClick$ = clickCount$.pipe(filter(x => x === 2));    // only double clicks
+    const notDoubleClick$ = clickCount$.pipe(filter(x => x !== 2)); // only the not double clicks
+
+    const doubleClick2$ = click$.pipe(
+      buffer(click$.pipe(debounceTime(250))),
+      map((a: any) => toLength(a)),
+      filter(x => x === 2)
+      )
+      .subscribe(
+        () => {
+          this.doubleClickMessage2 = "Double click 2";
+          this.noDoubleClickMessage = "";
+        }
+      )
 
     doubleClick$.subscribe(
-      (response) => {
+      () => {
         this.doubleClickMessage = "Double click";
         this.noDoubleClickMessage="";
       }
     )
+
     clickCount$.subscribe(
       (response) => {
         console.log(response);
       }
     )
+
     notDoubleClick$.subscribe(
-      (response) => {
+      () => {
         this.noDoubleClickMessage = "Not a double click";
         this.doubleClickMessage="";
+        this.doubleClickMessage2="";
       }
     )
 
@@ -93,6 +109,7 @@ export class AboutComponent implements OnInit {
   clear() {
     this.index = 0;
     this.doubleClickMessage="";
+    this.doubleClickMessage2="";
     this.noDoubleClickMessage="";
     this.messageService.clearCurrentMessage();
   }
