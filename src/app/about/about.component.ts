@@ -1,12 +1,11 @@
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
-import {Subscription, Observable, from, fromEvent} from "rxjs";
+import {Subscription, Observable, from, fromEvent, merge} from "rxjs";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {mergeMap, debounceTime, buffer} from "rxjs/operators";
+import {mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
 import {GithubUser} from "../model/github-user.model";
-import {filter} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-about',
@@ -16,6 +15,8 @@ import {filter} from "rxjs/internal/operators";
 export class AboutComponent implements OnInit {
 
   @ViewChild('btn') btn : ElementRef<any>;
+  @ViewChild('refreshBtn') refreshBtn : ElementRef<any>;
+
   doubleClickMessage: string;
   doubleClickMessage2: string;
   noDoubleClickMessage: string;
@@ -23,10 +24,12 @@ export class AboutComponent implements OnInit {
   messageStream: Subscription;
   message: Message;
   index: number = 0;
+
   githubUsers: GithubUser[] = new Array<GithubUser>();
 
   requestStream: Observable<any> = from(["https://api.github.com/users"]);
 
+  response: GithubUser[] = new Array<GithubUser>();
   responseStream = this.requestStream
     .pipe(
       mergeMap( requestUrl => {
@@ -52,6 +55,22 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
+    const rxRefreshBtn = this.refreshBtn.nativeElement;
+    const refresh$ = fromEvent(rxRefreshBtn, 'click').pipe(
+      startWith('startup click'),
+      map( (event: any) => {
+        let randomOffset = Math.floor(Math.random()*500);
+        return 'https://api.github.com/users?since=' + randomOffset;
+      }),
+      mergeMap( requestUrl => {
+        return this.http.get(requestUrl.toString());
+      }))
+      .subscribe((resp: GithubUser[]) => {
+        console.log(resp);
+        this.response = resp;
+        this.githubUsers = resp;
+      });
+
     const toLength = a => a.length;
     const rxBtn = this.btn.nativeElement;                           // get the button element
     const click$ = fromEvent(rxBtn, 'click');                       // listen for clicks

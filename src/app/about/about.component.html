@@ -4,6 +4,7 @@
   <button type="button" class="ui icon negative button" (click)="substract()"><i class="minus icon"></i></button>
   <button type="button" class="ui primary button" #btn>Double click or not...</button>
   <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
+  <button type="button" class="ui inverted green button" #refreshBtn>Refresh users..</button>
 </div>
 <div *ngIf="doubleClickMessage" class="ui message positive">
   {{ doubleClickMessage }}
@@ -18,20 +19,12 @@
 </div>
 <div class="ui message">
   <div>
+    <h3><img src="../../assets/images/GitHub-Mark-32px.png" />  Who to follow...</h3>
     <table class="ui very basic collapsing table">
-      <thead>
-        <tr>
-          <th>Avatar</th>
-          <th>Login</th>
-        </tr>
-      </thead>
-      <tbody>
       <tr *ngFor="let usr of githubUsers; let i=index">
         <td *ngIf="i<=2" data-label="Avatar"><img src={{usr.avatar_url}} class="ui mini circular image"/></td>
         <td *ngIf="i<=2" data-label="Login">{{ usr.login}}</td>
       </tr>
     </table>
   </div>
-  <pre>{{ requestStream  | async }}</pre>
-  <pre>{{ responseStream | async | json}}</pre>
 </div>
