@@ -22,8 +22,11 @@
     <h3><img src="../../assets/images/GitHub-Mark-32px.png" />  Who to follow...</h3>
     <table class="ui very basic collapsing table">
       <tr *ngFor="let usr of githubUsers; let i=index">
-        <td *ngIf="i<=2" data-label="Avatar"><img src={{usr.avatar_url}} class="ui mini circular image"/></td>
-        <td *ngIf="i<=2" data-label="Login">{{ usr.login}}</td>
+        <div *ngIf="i<=2">
+          <td  data-label="Avatar"><img src={{usr.avatar_url}} class="ui mini circular image"/></td>
+          <td  data-label="Login">{{ usr.login}}</td>
+          <td  data-label="Login"><a href="{{ usr.html_url}}" target="_blank">{{ usr.html_url}}</a></td>
+        </div>
       </tr>
     </table>
   </div>
