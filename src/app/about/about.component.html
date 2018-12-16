@@ -17,11 +17,20 @@
   <pre>{{ message | json }}</pre>
 </div>
 <div class="ui message">
-  <div *ngFor="let usr of githubUsers">
-    <div>
-      <img src={{usr.avatar_url}} class="ui mini circular image"/>
-    </div>
-    <div>{{usr.id}} - {{ usr.login}}</div>
+  <div>
+    <table class="ui very basic collapsing table">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Login</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usr of githubUsers">
+        <td data-label="Avatar"><img src={{usr.avatar_url}} class="ui mini circular image"/></td>
+        <td data-label="Login">{{ usr.login}}</td>
+      </tr>
+    </table>
   </div>
   <pre>{{ requestStream  | async }}</pre>
   <pre>{{ responseStream | async | json}}</pre>
