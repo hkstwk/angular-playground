@@ -8,8 +8,6 @@
 </div>
 <div *ngIf="doubleClickMessage" class="ui message positive">
   {{ doubleClickMessage }}
-</div><div *ngIf="doubleClickMessage2" class="ui message positive">
-  {{ doubleClickMessage2 }}
 </div>
 <div *ngIf="noDoubleClickMessage" class="ui message error">
   {{ noDoubleClickMessage }}
@@ -21,13 +19,34 @@
   <div>
     <img class="ui avatar image" src="../../assets/images/GitHub-Mark-32px.png" /><span>  Who to follow...</span>
     <table class="ui very basic collapsing table">
-      <tr *ngFor="let usr of githubUsers; let i=index">
+      <tr>
+        <div *ngIf="userSuggestion1">
+          <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion1.avatar_url}}/></td>
+          <td  data-label="Login">{{ userSuggestion1.login}}</td>
+          <td  data-label="Login"><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
+        </div>
+      </tr>
+      <tr>
+        <div *ngIf="userSuggestion2">
+          <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion2.avatar_url}}/></td>
+          <td  data-label="Login">{{ userSuggestion2.login}}</td>
+          <td  data-label="Login"><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
+        </div>
+      </tr>
+      <tr>
+        <div *ngIf="userSuggestion3">
+          <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion3.avatar_url}}/></td>
+          <td  data-label="Login">{{ userSuggestion3.login}}</td>
+          <td  data-label="Login"><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>
+        </div>
+      </tr>
+<!--      <tr *ngFor="let usr of githubUsers; let i=index">
         <div *ngIf="i<=2">
           <td  data-label="Avatar"><img class="ui avatar image" src={{usr.avatar_url}}/></td>
           <td  data-label="Login">{{ usr.login}}</td>
           <td  data-label="Login"><a href="{{ usr.html_url}}" target="_blank">{{ usr.html_url}}</a></td>
         </div>
-      </tr>
+      </tr>-->
     </table>
   </div>
 </div>
