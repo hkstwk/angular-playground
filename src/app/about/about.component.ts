@@ -1,10 +1,9 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
-import {Subscription, fromEvent, merge, Observable} from "rxjs";
-import {map} from "rxjs/operators";
+import {Subscription, fromEvent, merge} from "rxjs";
+import {map, mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-import {mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
 import {GithubUser} from "../model/github-user.model";
 
 @Component({
@@ -15,7 +14,8 @@ import {GithubUser} from "../model/github-user.model";
 export class AboutComponent implements OnInit {
 
   @ViewChild('btn') btn : ElementRef<any>;
-  @ViewChild('refreshBtn') refreshBtn : ElementRef<any>;
+  @ViewChild('refreshButton') refreshButton : ElementRef<any>;
+  @ViewChild('closeButton1') closeButton1 : ElementRef<any>;
 
   doubleClickMessage: string;
   noDoubleClickMessage: string;
@@ -47,9 +47,16 @@ export class AboutComponent implements OnInit {
      * and a "null" stream on every click (used to nullify the output
      * and thus hide the suggestion element).
      */
-    const rxRefreshButton = this.refreshBtn.nativeElement;
+    const rxRefreshButton = this.refreshButton.nativeElement;
     const refreshClick$ = fromEvent(rxRefreshButton, 'click');
     const refreshClickNull$ = refreshClick$.pipe(map( () => { return null; } ));
+
+    /** Close 1 close this user and replace by new one
+     *  close this user and replace by new one from latest response stream.
+     *  it will only pick from latest response stream using that one as cache
+     */
+    // const rxCloseButton1 = this.closeButton1.nativeElement;
+    // const closeClick1$ = fromEvent(rxCloseButton1, 'double click');
 
     /** request stream, initially "faking" startup click,
      * and from then on reacting on every refresh click by returning
@@ -172,38 +179,38 @@ export class AboutComponent implements OnInit {
         this.doubleClickMessage = "Double click";
         this.noDoubleClickMessage="";
       }
-    )
+    );
 
     clickCount$.subscribe(
       (response) => {
         console.log(response);
       }
-    )
+    );
 
     notDoubleClick$.subscribe(
       () => {
         this.noDoubleClickMessage = "Not a double click";
         this.doubleClickMessage="";
       }
-    )
+    );
 
-  }
+  };
 
   add() {
     this.index += 1;
     this.messageService.setCurrentMessage(new Message(this.index));
-  }
+  };
 
   substract() {
     this.index -= 1;
     this.messageService.setCurrentMessage(new Message(this.index));
-  }
+  };
 
   clear() {
     this.index = 0;
     this.doubleClickMessage="";
     this.noDoubleClickMessage="";
     this.messageService.clearCurrentMessage();
-  }
+  };
 
 }

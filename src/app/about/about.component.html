@@ -4,7 +4,7 @@
   <button type="button" class="ui icon negative button" (click)="substract()"><i class="minus icon"></i></button>
   <button type="button" class="ui primary button" #btn>Double click or not...</button>
   <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
-  <button type="button" class="ui inverted green button" #refreshBtn>Refresh users..</button>
+  <button type="button" class="ui inverted green button" #refreshButton>Refresh users..</button>
 </div>
 <div *ngIf="doubleClickMessage" class="ui message positive">
   {{ doubleClickMessage }}
@@ -23,21 +23,24 @@
         <div *ngIf="userSuggestion1">
           <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion1.avatar_url}}/></td>
           <td  data-label="Login">{{ userSuggestion1.login}}</td>
-          <td  data-label="Login"><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
+          <td  data-label="Html_url"><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
+          <td  data-label="Close"><i class="close link grey icon" #closeButton1></i></td>
         </div>
       </tr>
       <tr>
         <div *ngIf="userSuggestion2">
           <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion2.avatar_url}}/></td>
           <td  data-label="Login">{{ userSuggestion2.login}}</td>
-          <td  data-label="Login"><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
+          <td  data-label="Html_url"><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
+          <td  data-label="Close"><i class="close link grey icon"></i></td>
         </div>
       </tr>
       <tr>
         <div *ngIf="userSuggestion3">
           <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion3.avatar_url}}/></td>
           <td  data-label="Login">{{ userSuggestion3.login}}</td>
-          <td  data-label="Login"><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>
+          <td  data-label="Html_url"><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>
+          <td  data-label="Close"><i class="close link grey icon"></i></td>
         </div>
       </tr>
     </table>
