@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from "@angular/core";
+import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
 import {Subscription, fromEvent, merge} from "rxjs";
@@ -11,7 +11,7 @@ import {GithubUser} from "../model/github-user.model";
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent implements OnInit, AfterViewInit {
+export class AboutComponent implements OnInit {
 
   @ViewChild('btn') btn : ElementRef<any>;
   @ViewChild('refreshButton') refreshButton : ElementRef<any>;
@@ -184,7 +184,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
       );
     }, 1000);
 
-    /** Close 2 close this user and replace by new one
+    /** Close 3 close this user and replace by new one
      *  close this user and replace by new one from latest response stream.
      *  it will only pick from latest response stream using that one as cache
      */
@@ -224,11 +224,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
         this.doubleClickMessage="";
       }
     );
-
-  };
-
-  ngAfterViewInit() {
-
 
   };
 
