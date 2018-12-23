@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
-import {Subscription, Observable, from, fromEvent, merge, range, OperatorFunction} from "rxjs";
+import {Subscription, fromEvent, merge, Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
@@ -24,10 +24,10 @@ export class AboutComponent implements OnInit {
   message: Message;
   index: number = 0;
 
-  githubUsers: GithubUser[] = new Array<GithubUser>();
-  userSuggestion1: GithubUser = new GithubUser();
-  userSuggestion2: GithubUser = new GithubUser();
-  userSuggestion3: GithubUser = new GithubUser();
+  githubUsers: GithubUser[];// = new Array<GithubUser>();
+  userSuggestion1: GithubUser;
+  userSuggestion2: GithubUser;
+  userSuggestion3: GithubUser;
 
   constructor(private messageService: MessageService, private http: HttpClient) {
     this.messageStream = this.messageService.getCurrentMessage()
@@ -41,11 +41,18 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit() {
-    const rxRefreshBtn = this.refreshBtn.nativeElement;
-    const refreshClick$ = fromEvent(rxRefreshBtn, 'click');
-    const refreshClickClear$ = refreshClick$.pipe(
-      map( (resp: Observable<any>) => {
-        return "hallo" }));
+
+    // refreshing the list of GitHub users to follow
+    // creating a refreshClickStream on the button click (resulting in MouseEvents)
+    // and a "null" stream on every click (used to nullify the output
+    // and thus hide the suggestion element).
+    const rxRefreshButton = this.refreshBtn.nativeElement;
+    const refreshClick$ = fromEvent(rxRefreshButton, 'click');
+    const refreshClickNull$ = refreshClick$.pipe(map( () => { return null; } ));
+
+    // request stream, initially "faking" startup click,
+    // and from then on reacting on every refresh click by returning
+    // a users-URL from a random starting point (".../users?=since=...")
     const request$ = refreshClick$.pipe(
       startWith('startup click'),
       map( () => {
@@ -53,22 +60,33 @@ export class AboutComponent implements OnInit {
         return 'https://api.github.com/users?since=' + randomOffset;
       }));
 
+    // response stream, using URL of returned by the request stream to
+    // call Github API. mergeMap is used to flatten out the JSON that
+    // is returned by HttpClient in yet another Observable.
     const response$ = request$.pipe(
       mergeMap( requestUrl => {
         return this.http.get(requestUrl.toString());
       }));
 
-    response$.subscribe((resp: GithubUser[]) => {
-        this.githubUsers = resp;
-      });
-
-    const suggestion1$ = response$.pipe(
+    // Suggestion1 Stream is for first GitHub user to display.
+    // Using some Math functions we randomly select a GitHub user
+    // from the response stream.
+    const suggestion$ : Observable<GithubUser> = response$.pipe(
       map((listUsers: GithubUser[]) => {
         // get one random user from the list
         return listUsers[Math.floor(Math.random()*listUsers.length)];
-      }));
+      }),
+      debounceTime(2500)
+    );
+
+    const suggestion1$ = merge(
+      suggestion$,
+      refreshClickNull$)
+      .pipe(startWith(null));
+
+    // render suggestion1
     suggestion1$.subscribe((user: GithubUser) => {
-      console.log(user);
+      console.log("user1 = " + user);
       this.userSuggestion1 = user;
     });
 
