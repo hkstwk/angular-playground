@@ -42,73 +42,117 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
 
-    // refreshing the list of GitHub users to follow
-    // creating a refreshClickStream on the button click (resulting in MouseEvents)
-    // and a "null" stream on every click (used to nullify the output
-    // and thus hide the suggestion element).
+    /** refreshing the list of GitHub users to follow
+     * creating a refreshClickStream on the button click (resulting in MouseEvents)
+     * and a "null" stream on every click (used to nullify the output
+     * and thus hide the suggestion element).
+     */
     const rxRefreshButton = this.refreshBtn.nativeElement;
     const refreshClick$ = fromEvent(rxRefreshButton, 'click');
     const refreshClickNull$ = refreshClick$.pipe(map( () => { return null; } ));
 
-    // request stream, initially "faking" startup click,
-    // and from then on reacting on every refresh click by returning
-    // a users-URL from a random starting point (".../users?=since=...")
+    /** request stream, initially "faking" startup click,
+     * and from then on reacting on every refresh click by returning
+     * a users-URL from a random starting point (".../users?=since=...")
+     */
     const request$ = refreshClick$.pipe(
       startWith('startup click'),
       map( () => {
-        let randomOffset = Math.floor(Math.random()*500);
+        let randomOffset = Math.floor(Math.random()*5000);
         return 'https://api.github.com/users?since=' + randomOffset;
       }));
 
-    // response stream, using URL of returned by the request stream to
-    // call Github API. mergeMap is used to flatten out the JSON that
-    // is returned by HttpClient in yet another Observable.
+    /** response stream, using URL of returned by the request stream to
+     * call Github API. mergeMap is used to flatten out the JSON that
+     * is returned by HttpClient in yet another Observable.
+     */
     const response$ = request$.pipe(
       mergeMap( requestUrl => {
         return this.http.get(requestUrl.toString());
       }));
 
-    // Suggestion1 Stream is for first GitHub user to display.
-    // Using some Math functions we randomly select a GitHub user
-    // from the response stream.
-    const suggestion$ : Observable<GithubUser> = response$.pipe(
-      map((listUsers: GithubUser[]) => {
-        // get one random user from the list
-        return listUsers[Math.floor(Math.random()*listUsers.length)];
-      }),
-      debounceTime(2500)
-    );
-
+    /**
+     * Suggestion1 Stream is for first GitHub user to display.
+     * Using some Math functions we randomly select a GitHub user
+     * from the response stream. Then merge with the null stream
+     * to stop rendering first user later on.
+     */
     const suggestion1$ = merge(
-      suggestion$,
+      // first part to merge
+      response$.pipe(
+        map((listUsers: GithubUser[]) => {
+          // get one random user from the list
+          return listUsers[Math.floor(Math.random()*listUsers.length)];
+        }),
+        debounceTime(200)
+      ),
+      // second part to merge
       refreshClickNull$)
+      // initial null so that nothing is rendered until we have a user to display
       .pipe(startWith(null));
 
-    // render suggestion1
+    /** render suggestion1
+     *  when null nothing will be displayed. When user is returned it will be displayed
+     *  (handled using *ngIf in HTML)
+     */
     suggestion1$.subscribe((user: GithubUser) => {
-      console.log("user1 = " + user);
+      console.log(user);
       this.userSuggestion1 = user;
     });
 
-    const suggestion2$ = response$.pipe(
-      // startWith(''),
-      map((listUsers: GithubUser[]) => {
-        // get one random user from the list
-        return listUsers[Math.floor(Math.random()*listUsers.length)];
-      }));
+    /**
+     * Suggestion2 Stream is for first GitHub user to display.
+     * Using some Math functions we randomly select a GitHub user
+     * from the response stream. Then merge with the null stream
+     * to stop rendering first user later on.
+     */
+    const suggestion2$ = merge(
+      // first part to merge
+      response$.pipe(
+        map((listUsers: GithubUser[]) => {
+          // get one random user from the list
+          return listUsers[Math.floor(Math.random()*listUsers.length)];
+        }),
+        debounceTime(400)
+      ),
+      // second part to merge
+      refreshClickNull$)
+    // initial null so that nothing is rendered until we have a user to display
+      .pipe(startWith(null));
 
+    /** render suggestion2
+     *  when null nothing will be displayed. When user is returned it will be displayed
+     *  (handled using *ngIf in HTML)
+     */
     suggestion2$.subscribe((user: GithubUser) => {
       console.log(user);
       this.userSuggestion2 = user;
     });
 
-    const suggestion3$ = response$.pipe(
-      startWith(''),
-      map((listUsers: GithubUser[]) => {
-        // get one random user from the list
-        return listUsers[Math.floor(Math.random()*listUsers.length)];
-      }));
+    /**
+     * Suggestion3 Stream is for first GitHub user to display.
+     * Using some Math functions we randomly select a GitHub user
+     * from the response stream. Then merge with the null stream
+     * to stop rendering first user later on.
+     */
+    const suggestion3$ = merge(
+        // first part to merge
+        response$.pipe(
+          map((listUsers: GithubUser[]) => {
+            // get one random user from the list
+            return listUsers[Math.floor(Math.random()*listUsers.length)];
+          }),
+          debounceTime(600)
+        ),
+        // second part to merge
+        refreshClickNull$)
+      // initial null so that nothing is rendered until we have a user to display
+        .pipe(startWith(null));
 
+    /** render suggestion3
+     *  when null nothing will be displayed. When user is returned it will be displayed
+     *  (handled using *ngIf in HTML)
+     */
     suggestion3$.subscribe((user: GithubUser) => {
       console.log(user);
       this.userSuggestion3 = user;
