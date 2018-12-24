@@ -1,7 +1,7 @@
-import {Component, OnInit, ViewChild, ElementRef} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
-import {Subscription, fromEvent, merge} from "rxjs";
+import {Subscription, fromEvent, merge, combineLatest} from "rxjs";
 import {map, mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {GithubUser} from "../model/github-user.model";
@@ -13,11 +13,11 @@ import {GithubUser} from "../model/github-user.model";
 })
 export class AboutComponent implements OnInit {
 
-  @ViewChild('btn') btn : ElementRef<any>;
-  @ViewChild('refreshButton') refreshButton : ElementRef<any>;
-  @ViewChild('closeButton1') closeButton1 : ElementRef<any>;
-  @ViewChild('closeButton2') closeButton2 : ElementRef<any>;
-  @ViewChild('closeButton3') closeButton3 : ElementRef<any>;
+  @ViewChild('btn') btn;
+  @ViewChild('refreshButton') refreshButton;
+  @ViewChild('closeButton1') closeButton1;
+  @ViewChild('closeButton2') closeButton2;
+  @ViewChild('closeButton3') closeButton3;
 
   doubleClickMessage: string;
   noDoubleClickMessage: string;
@@ -108,6 +108,13 @@ export class AboutComponent implements OnInit {
       mergeMap( requestUrl => {
         return this.http.get(requestUrl.toString());
       }));
+
+    const helper$ = combineLatest(response$, refreshClick$);
+    helper$.subscribe( (resp) => {
+      console.log("combineLatest start");
+      console.log(resp);
+      console.log("combineLatest finish");
+    });
 
     /**
      * Suggestion1 Stream is for first GitHub user to display.
