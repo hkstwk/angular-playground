@@ -15,34 +15,40 @@
 <div *ngIf="message" class="ui message">
   <pre>{{ message | json }}</pre>
 </div>
-<div class="ui message">
-  <div>
-    <img class="ui avatar image" src="../../assets/images/GitHub-Mark-32px.png" /><span>  Who to follow...</span>
-    <table class="ui very basic collapsing table">
+<div>
+  <table class="ui single line basic table">
+    <thead>
+    <tr>
+      <th colspan="3">
+        <img class="ui avatar image" src="../../assets/images/GitHub-Mark-32px.png" /><span>Who to follow...</span>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
       <tr>
         <div *ngIf="userSuggestion1">
-          <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion1.avatar_url}}/></td>
-          <td  data-label="Login">{{ userSuggestion1.login}}</td>
-          <td  data-label="Html_url"><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
-          <td  data-label="Close"><i class="close link grey icon" #closeButton1></i></td>
+          <td><img class="ui avatar image" src={{userSuggestion1.avatar_url}}/></td>
+          <td>{{ userSuggestion1.login}}</td>
+          <td><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
+          <td class="right aligned"><i class="close link grey icon" #closeButton1></i></td>
         </div>
       </tr>
       <tr>
         <div *ngIf="userSuggestion2">
-          <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion2.avatar_url}}/></td>
-          <td  data-label="Login">{{ userSuggestion2.login}}</td>
-          <td  data-label="Html_url"><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
-          <td  data-label="Close"><i class="close link grey icon" #closeButton2></i></td>
+          <td><img class="ui avatar image" src={{userSuggestion2.avatar_url}}/></td>
+          <td>{{ userSuggestion2.login}}</td>
+          <td><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
+          <td class="right aligned"><i class="close link grey icon" #closeButton2></i></td>
         </div>
       </tr>
       <tr>
         <div *ngIf="userSuggestion3">
-          <td  data-label="Avatar"><img class="ui avatar image" src={{userSuggestion3.avatar_url}}/></td>
-          <td  data-label="Login">{{ userSuggestion3.login}}</td>
-          <td  data-label="Html_url"><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>
-          <td  data-label="Close"><i class="close link grey icon" #closeButton3></i></td>
+          <td><img class="ui avatar image" src={{userSuggestion3.avatar_url}}/></td>
+          <td>{{ userSuggestion3.login}}</td>
+          <td><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>
+          <td  class="right aligned"><i class="close link grey icon" #closeButton3></i></td>
         </div>
       </tr>
-    </table>
-  </div>
+    </tbody>
+  </table>
 </div>
