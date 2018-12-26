@@ -77,7 +77,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
         return this.http.get(requestUrl.toString());
       }));
 
-    const helper$ = combineLatest(response$, refreshClick$);
+    const helper$ = combineLatest(response$, this.closeClick1$);
     helper$.subscribe( (resp) => {
       console.log("combineLatest start");
       console.log(resp);
@@ -108,16 +108,16 @@ export class AboutComponent implements OnInit, AfterViewInit {
      *  (handled using *ngIf in HTML)
      */
     suggestion1$.subscribe((user: GithubUser) => {
+      this.closeClick1$ = null;
       console.log(user);
       this.userSuggestion1 = user;
       setTimeout(() => {
         this.rxCloseButton1 = this.closeButton1.nativeElement;
         this.closeClick1$ = fromEvent(this.rxCloseButton1, 'click');
         this.closeClick1$.subscribe(
-             (resp) => { console.log(resp); }
-           );
-      }
-      , 1000);
+           (resp) => { console.log(resp); }
+         );
+      }, 1000);
     });
 
     /**
