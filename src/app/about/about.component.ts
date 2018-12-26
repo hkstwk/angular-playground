@@ -112,12 +112,15 @@ export class AboutComponent implements OnInit, AfterViewInit {
       console.log(user);
       this.userSuggestion1 = user;
       setTimeout(() => {
-        this.rxCloseButton1 = this.closeButton1.nativeElement;
-        this.closeClick1$ = fromEvent(this.rxCloseButton1, 'click');
-        this.closeClick1$.subscribe(
-           (resp) => { console.log(resp); }
-         );
-      }, 1000);
+        if (!this.closeClick1$) {
+          this.rxCloseButton1 = this.closeButton1.nativeElement;
+          this.closeClick1$ = fromEvent(this.rxCloseButton1, 'click');
+          this.closeClick1$.subscribe(
+             (resp) => { console.log(resp); }
+           );
+        }
+      }
+      , 1000);
     });
 
     /**
