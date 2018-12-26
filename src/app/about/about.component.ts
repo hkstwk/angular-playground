@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, ViewChild, AfterViewInit} from "@angular/core";
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
 import {Subscription, fromEvent, merge, combineLatest} from "rxjs";
@@ -11,13 +11,16 @@ import {GithubUser} from "../model/github-user.model";
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent implements OnInit, AfterViewInit {
 
   @ViewChild('btn') btn;
   @ViewChild('refreshButton') refreshButton;
   @ViewChild('closeButton1') closeButton1;
   @ViewChild('closeButton2') closeButton2;
   @ViewChild('closeButton3') closeButton3;
+
+  rxCloseButton1: any;
+  closeClick1$: any;
 
   doubleClickMessage: string;
   noDoubleClickMessage: string;
@@ -53,41 +56,6 @@ export class AboutComponent implements OnInit {
     const refreshClick$ = fromEvent(rxRefreshButton, 'click');
     const refreshClickNull$ = refreshClick$.pipe(map( () => { return null; } ));
 
-    /** Close 1 close this user and replace by new one
-     *  close this user and replace by new one from latest response stream.
-     *  it will only pick from latest response stream using that one as cache
-     */
-    setTimeout(() => {
-      const rxCloseButton1 = this.closeButton1.nativeElement;
-      const closeClick1$ = fromEvent(rxCloseButton1, 'click');
-      closeClick1$.subscribe(
-        (resp) => { console.log(resp); }
-      );
-    }, 1000);
-
-    /** Close 2 close this user and replace by new one
-     *  close this user and replace by new one from latest response stream.
-     *  it will only pick from latest response stream using that one as cache
-     */
-    setTimeout(() => {
-      const rxCloseButton2 = this.closeButton2.nativeElement;
-      const closeClick2$ = fromEvent(rxCloseButton2, 'click');
-      closeClick2$.subscribe(
-        (resp) => { console.log(resp); }
-      );
-    }, 1000);
-
-    /** Close 3 close this user and replace by new one
-     *  close this user and replace by new one from latest response stream.
-     *  it will only pick from latest response stream using that one as cache
-     */
-    setTimeout(() => {
-      const rxCloseButton3 = this.closeButton3.nativeElement;
-      const closeClick3$ = fromEvent(rxCloseButton3, 'click');
-      closeClick3$.subscribe(
-        (resp) => { console.log(resp); }
-      );
-    }, 1000);
 
     /** request stream, initially "faking" startup click,
      * and from then on reacting on every refresh click by returning
@@ -142,6 +110,14 @@ export class AboutComponent implements OnInit {
     suggestion1$.subscribe((user: GithubUser) => {
       console.log(user);
       this.userSuggestion1 = user;
+      setTimeout(() => {
+        this.rxCloseButton1 = this.closeButton1.nativeElement;
+        this.closeClick1$ = fromEvent(this.rxCloseButton1, 'click');
+        this.closeClick1$.subscribe(
+             (resp) => { console.log(resp); }
+           );
+      }
+      , 1000);
     });
 
     /**
@@ -230,6 +206,45 @@ export class AboutComponent implements OnInit {
     );
 
   };
+
+  ngAfterViewInit() {
+
+    /** Close 1 close this user and replace by new one
+     *  close this user and replace by new one from latest response stream.
+     *  it will only pick from latest response stream using that one as cache
+     */
+    setTimeout(() => {
+      // this.rxCloseButton1 = this.closeButton1.nativeElement;
+      // const closeClick1$ = fromEvent(this.rxCloseButton1, 'click');
+      // closeClick1$.subscribe(
+      //   (resp) => { console.log(resp); }
+      // );
+    }, 1000);
+
+    /** Close 2 close this user and replace by new one
+     *  close this user and replace by new one from latest response stream.
+     *  it will only pick from latest response stream using that one as cache
+     */
+    setTimeout(() => {
+      const rxCloseButton2 = this.closeButton2.nativeElement;
+      const closeClick2$ = fromEvent(rxCloseButton2, 'click');
+      closeClick2$.subscribe(
+        (resp) => { console.log(resp); }
+      );
+    }, 1000);
+
+    /** Close 3 close this user and replace by new one
+     *  close this user and replace by new one from latest response stream.
+     *  it will only pick from latest response stream using that one as cache
+     */
+    setTimeout(() => {
+      const rxCloseButton3 = this.closeButton3.nativeElement;
+      const closeClick3$ = fromEvent(rxCloseButton3, 'click');
+      closeClick3$.subscribe(
+        (resp) => { console.log(resp); }
+      );
+    }, 1000);
+  }
 
   add() {
     this.index += 1;
