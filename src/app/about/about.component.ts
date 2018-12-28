@@ -77,6 +77,10 @@ export class AboutComponent implements OnInit, AfterViewInit {
         return this.http.get(requestUrl.toString());
       }));
 
+    response$.subscribe(
+      (resp) => { console.log("API called. ", resp) }
+    )
+
     // const helper$ = this.closeClick1$.pipe(
     //   combineLatest(response$,
     //     (click, listUsers) => {
@@ -160,7 +164,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
      */
     const suggestion2$temp = combineLatest(
       // first part to merge
-      closeClick2$,
+      closeClick2$.pipe(startWith(null)),
       response$,
       (click, listUsers: GithubUser[]) => {
           // get one random user from the list
@@ -170,9 +174,9 @@ export class AboutComponent implements OnInit, AfterViewInit {
 
     const suggestion2$ = merge(
       suggestion2$temp,
-      refreshClick$.pipe(map(function(){ return null; }),
-        startWith(null))
-      )
+      refreshClick$.pipe(map(function(){ return null; })
+        // startWith(null))
+      ))
 
     /**
      * Suggestion2 Stream is for first GitHub user to display.
