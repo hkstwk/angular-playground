@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from "@angular/core";
 import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
-import {Subscription, fromEvent, merge, combineLatest} from "rxjs";
-import {map, mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
+import {Subscription, fromEvent, merge, interval, combineLatest} from "rxjs";
+import {map, mergeMap, debounceTime, buffer, filter, startWith, take} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {GithubUser} from "../model/github-user.model";
 
@@ -77,12 +77,12 @@ export class AboutComponent implements OnInit, AfterViewInit {
         return this.http.get(requestUrl.toString());
       }));
 
-    const helper$ = combineLatest(response$, this.closeClick1$);
-    helper$.subscribe( (resp) => {
-      console.log("combineLatest start");
-      console.log(resp);
-      console.log("combineLatest finish");
-    });
+    // const helper$ = this.closeClick1$.pipe(
+    //   combineLatest(response$,
+    //     (click, listUsers) => {
+    //       return listUsers[Math.floor(Math.random()*listUsers.length)];
+    //    })
+    //   );
 
     /**
      * Suggestion1 Stream is for first GitHub user to display.
@@ -123,13 +123,64 @@ export class AboutComponent implements OnInit, AfterViewInit {
       , 1000);
     });
 
+    const source1$ = interval(100).pipe(
+      map(function (i) { return 'First: ' + i; })
+    );
+
+    const source2$ = interval(151).pipe(
+      map(function (i) { return 'Second: ' + i; })
+    );
+
+    const source$ = combineLatest(
+      source1$,
+      source2$,
+      (s1, s2) => { return s1 + '; ' + s2 }
+    ).pipe(
+      take(10));
+
+    source$.subscribe(
+      function (x) {
+        console.log('Next: %s', x);
+      },
+      function (err) {
+        console.log('Error: %s', err);
+      },
+      function () {
+        console.log('Completed');
+      });
+
+    const rxCloseButton2 = this.closeButton2.nativeElement;
+    const closeClick2$ = fromEvent(rxCloseButton2, 'click');
+
     /**
      * Suggestion2 Stream is for first GitHub user to display.
      * Using some Math functions we randomly select a GitHub user
      * from the response stream. Then merge with the null stream
      * to stop rendering first user later on.
      */
+    const suggestion2$temp = combineLatest(
+      // first part to merge
+      closeClick2$,
+      response$,
+      (click, listUsers: GithubUser[]) => {
+          // get one random user from the list
+          return listUsers[Math.floor(Math.random()*listUsers.length)];
+        })
+    // initial null so that nothing is rendered until we have a user to display
+
     const suggestion2$ = merge(
+      suggestion2$temp,
+      refreshClick$.pipe(map(function(){ return null; }),
+        startWith(null))
+      )
+
+    /**
+     * Suggestion2 Stream is for first GitHub user to display.
+     * Using some Math functions we randomly select a GitHub user
+     * from the response stream. Then merge with the null stream
+     * to stop rendering first user later on.
+     */
+    const suggestion2a$ = merge(
       // first part to merge
       response$.pipe(
         map((listUsers: GithubUser[]) => {
