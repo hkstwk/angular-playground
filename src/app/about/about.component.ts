@@ -64,15 +64,13 @@ export class AboutComponent implements OnInit {
         return 'https://api.github.com/users?since=' + randomOffset;
       }));
 
-    request$.subscribe((resp: string) => { console.log(resp)});
-
     /** response stream, using URL returned by the request stream to
      * call Github API. mergeMap is used to flatten out the JSON that
      * is returned by HttpClient in yet another Observable.
      */
     const response$ = request$.pipe(
       mergeMap( requestUrl => {
-        var resp = this.http.get(requestUrl.toString());
+        let resp = this.http.get(requestUrl.toString());
         resp.subscribe((resp) => console.log(resp));
         return resp;
       }));
