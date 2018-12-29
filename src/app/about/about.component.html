@@ -29,14 +29,16 @@
         <div *ngIf="userSuggestion1">
           <td><img class="ui avatar image" src={{userSuggestion1.avatar_url}}/></td>
           <td>{{ userSuggestion1.login}}</td>
+          <td>{{ userSuggestion1.id}}</td>
           <td><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
-          <td class="right aligned"><i class="close link grey icon" #closeButton1></i></td>
         </div>
+          <td class="right aligned"><i class="close link grey icon" #closeButton1></i></td>
       </tr>
       <tr>
         <div *ngIf="userSuggestion2">
           <td><img class="ui avatar image" src={{userSuggestion2.avatar_url}}/></td>
           <td>{{ userSuggestion2.login}}</td>
+          <td>{{ userSuggestion2.id}}</td>
           <td><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
         </div>
           <td class="right aligned"><i class="close link grey icon" #closeButton2></i></td>
@@ -45,9 +47,10 @@
         <div *ngIf="userSuggestion3">
           <td><img class="ui avatar image" src={{userSuggestion3.avatar_url}}/></td>
           <td>{{ userSuggestion3.login}}</td>
+          <td>{{ userSuggestion3.id}}</td>
           <td><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>
-          <td  class="right aligned"><i class="close link grey icon" #closeButton3></i></td>
         </div>
+          <td  class="right aligned"><i class="close link grey icon" #closeButton3></i></td>
       </tr>
     </tbody>
   </table>
