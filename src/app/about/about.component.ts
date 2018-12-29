@@ -5,6 +5,7 @@ import {Subscription, fromEvent, merge, combineLatest} from "rxjs";
 import {map, mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {GithubUser} from "../model/github-user.model";
+import {publishReplay, refCount} from "rxjs/internal/operators";
 
 @Component({
   selector: 'app-about',
@@ -73,7 +74,9 @@ export class AboutComponent implements OnInit {
         let resp = this.http.get(requestUrl.toString());
         resp.subscribe((resp) => console.log(resp));
         return resp;
-      }));
+      }),
+    publishReplay(2),
+    refCount());
 
     /**
      * Suggestion1 Stream is for first GitHub user to display.
