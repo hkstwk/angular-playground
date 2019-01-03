@@ -14,27 +14,28 @@ interface IChatMessagesOperation extends Function {
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesService {
-  // a stream that publishes new messages only once
+export class ChatMessagesService {
+  // a stream that publishes new chatMessages only once
   newChatMessages: Subject<ChatMessage> = new Subject<ChatMessage>();
 
-  messages: Observable<ChatMessage[]>;
+  chatMessages: Observable<ChatMessage[]>;
 
-  // `updates` receives _operations_ to be applied to our `messages`
-  // it's a way we can perform changes on *all* messages (that are currently // stored in `messages`)
+  // `updates` receives _operations_ to be applied to our `chatMessages`
+  // it's a way we can perform changes on *all* chatMessages (that are currently // stored in `chatMessages`)
   updates: Subject<any> = new Subject<any>();
 
   // action streams
   create: Subject<ChatMessage> = new Subject<ChatMessage>();
+  markThreadAsRead: Subject<any> = new Subject<any>();
 
   constructor() {
-    this.messages = this.updates.pipe(
-      // watch the updates and accumulate operations on the messages
+    this.chatMessages = this.updates.pipe(
+      // watch the updates and accumulate operations on the chatMessages
       scan((chatMessages: ChatMessage[],
              operation: IChatMessagesOperation) => {
           return operation(chatMessages) },
         initialChatMessages),
-      // make sure we can share the most recent list of messages across anyone
+      // make sure we can share the most recent list of chatMessages across anyone
       publishReplay(1),
       refCount()
     );
@@ -46,13 +47,31 @@ export class MessagesService {
         };
       })
     ).subscribe(this.updates);
+
+    this.newChatMessages.subscribe(this.create);
+
+    this.markThreadAsRead
+      .pipe(
+        map( (thread: Thread) => {
+          return (chatMessages: ChatMessage[]) => {
+            return chatMessages.map( (chatMessage: ChatMessage) => {
+              // note that we're manipulating `message` directly here. Mutability
+              // can be confusing and there are lots of reasons why you might want
+              // to, say, copy the Message object or some other 'immutable' here
+              if (chatMessage.thread.id === thread.id) {
+              chatMessage.isRead = true; }
+            return chatMessage; });
+          };
+        })
+      )
+      .subscribe(this.updates);
   }
 
   addMessage(chatMessage: ChatMessage): void {
     this.newChatMessages.next(chatMessage);
   }
 
-  messagesForThreadUser(thread: Thread, user: User): Observable<ChatMessage> {
+  chatMessagesForThreadUser(thread: Thread, user: User): Observable<ChatMessage> {
     return this.newChatMessages.pipe(
       filter((chatMessage: ChatMessage) => {
         // belongs to this thread

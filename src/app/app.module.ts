@@ -25,6 +25,7 @@ import { EulerComponent } from './euler/euler.component';
 import {EulerService} from "./euler/euler.service";
 import {MessageService} from "./about/message.service";
 import { ChatAppComponent } from './chat-app/chat-app.component';
+import {ChatMessagesService} from "./service/chat-messages.service";
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
@@ -67,7 +68,7 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [EulerService, MessageService, youTubeSearcInjectables],
+  providers: [EulerService, MessageService, ChatMessagesService, youTubeSearcInjectables],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
