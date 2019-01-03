@@ -24,6 +24,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { EulerComponent } from './euler/euler.component';
 import {EulerService} from "./euler/euler.service";
 import {MessageService} from "./about/message.service";
+import { ChatAppComponent } from './chat-app/chat-app.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'reddit', pathMatch: 'full' },
@@ -56,7 +57,8 @@ const routes: Routes = [
     YouTubeSearchComponent,
     SearchBoxComponent,
     SearchResultComponent,
-    EulerComponent
+    EulerComponent,
+    ChatAppComponent
   ],
   imports: [
     BrowserModule,

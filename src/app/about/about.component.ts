@@ -75,7 +75,7 @@ export class AboutComponent implements OnInit {
         resp.subscribe((resp) => console.log(resp));
         return resp;
       }),
-    publishReplay(2),
+    publishReplay(1),
     refCount());
 
     /**
