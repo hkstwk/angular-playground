@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EulerComponent } from './euler.component';
+import {EulerService} from "./euler.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {HttpHandler} from "@angular/common/http";
 
 describe('EulerComponent', () => {
   let component: EulerComponent;
@@ -8,7 +12,9 @@ describe('EulerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EulerComponent ]
+      declarations: [ EulerComponent ],
+      providers: [EulerService, HttpClient, HttpHandler],
+      imports: [ FormsModule],
     })
     .compileComponents();
   }));

@@ -1,12 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RedditComponent } from './reddit.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {ArticleComponent} from "../article/article.component";
 
 describe('RedditComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        RedditComponent
+        RedditComponent,
+        ArticleComponent
       ],
+      imports: [ RouterTestingModule ],
     }).compileComponents();
   }));
 
@@ -16,16 +20,17 @@ describe('RedditComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angular-reddit'`, () => {
+  it(`should have four articles`, () => {
     const fixture = TestBed.createComponent(RedditComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angular-playground');
+    const comp = fixture.debugElement.componentInstance;
+    console.log(comp);
+    expect(comp.articles.length).toEqual(4);
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render title in a h3 tag', () => {
     const fixture = TestBed.createComponent(RedditComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to angular-playground!');
+    expect(compiled.querySelector('h3').textContent).toContain('Add a Link');
   });
 });

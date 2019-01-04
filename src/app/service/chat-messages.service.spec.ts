@@ -3,33 +3,19 @@ import { ChatMessagesService } from './chat-messages.service';
 import {User} from "../model/user.model";
 import {Thread} from "../model/thread.model";
 import {ChatMessage} from "../model/chat-message.model";
-import {describe, expect} from "@angular/core/testing/src/testing_internal";
 import {TestBed} from "@angular/core/testing";
-import {async} from "@angular/core/testing";
 
 describe('ChatMessagesService',() => {
 
-  let chatMessagesService: ChatMessagesService; // Add this
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      providers: [ChatMessagesService]
-    });
+  it('should be created', () => {
+    const service: ChatMessagesService = TestBed.get(ChatMessagesService);
+    expect(service).toBeTruthy();
+  });
 
-    chatMessagesService = TestBed.get(ChatMessagesService); // Add this
-  }));
 
-  it('should be created', async(() => { // Remove inject()
-    expect(this.chatMessagesService).toBeTruthy();
-  }));
-
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(ChatMessagesService);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-
-  it('should test', async(() => {
+  it('should test', () => {
 
     const user: User = new User('Harm', '');
     const thread: Thread = new Thread('t1', 'Harm', '');
@@ -63,5 +49,5 @@ describe('ChatMessagesService',() => {
     chatMessagesService.addMessage(m1);
     chatMessagesService.addMessage(m2);
 
-  }));
+  });
 });
