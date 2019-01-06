@@ -1,30 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { AppComponent } from './app.component';
-import { ArticleComponent } from './article/article.component';
-import { RedditComponent} from "./reddit/reddit.component";
-import { AboutComponent } from "./about/about.component";
-import { InventoryComponent } from './inventory/inventory.component';
-import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductRowComponent } from './product-row/product-row.component';
-import { ProductImageComponent } from './product-image/product-image.component';
-import { PriceDisplayComponent } from './price-display/price-display.component';
-import { ProductDepartmentComponent } from './product-department/product-department.component';
-import { DirectivesComponent } from './directives/directives.component';
-import { DemoSkuComponent } from './demo-sku/demo-sku.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { SimpleHttpComponent } from './simple-http/simple-http.component';
-import { HttpClientModule } from "@angular/common/http";
-import { YouTubeSearchComponent } from './you-tube-search/you-tube-search.component';
-import { youTubeSearcInjectables } from "./you-tube-search/you-tube-search.injectables";
-import { SearchBoxComponent } from './search-box/search-box.component';
-import { SearchResultComponent } from './search-result/search-result.component';
-import { EulerComponent } from './euler/euler.component';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {RouterModule, Routes} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AppComponent} from "./app.component";
+import {ArticleComponent} from "./article/article.component";
+import {RedditComponent} from "./reddit/reddit.component";
+import {AboutComponent} from "./about/about.component";
+import {InventoryComponent} from "./inventory/inventory.component";
+import {ProductsListComponent} from "./products-list/products-list.component";
+import {ProductRowComponent} from "./product-row/product-row.component";
+import {ProductImageComponent} from "./product-image/product-image.component";
+import {PriceDisplayComponent} from "./price-display/price-display.component";
+import {ProductDepartmentComponent} from "./product-department/product-department.component";
+import {DirectivesComponent} from "./directives/directives.component";
+import {DemoSkuComponent} from "./demo-sku/demo-sku.component";
+import {SimpleHttpComponent} from "./simple-http/simple-http.component";
+import {HttpClientModule} from "@angular/common/http";
+import {YouTubeSearchComponent} from "./you-tube-search/you-tube-search.component";
+import {youTubeSearcInjectables} from "./you-tube-search/you-tube-search.injectables";
+import {SearchBoxComponent} from "./search-box/search-box.component";
+import {SearchResultComponent} from "./search-result/search-result.component";
+import {EulerComponent} from "./euler/euler.component";
 import {EulerService} from "./euler/euler.service";
 import {MessageService} from "./about/message.service";
-import { ChatAppComponent } from './chat-app/chat-app.component';
+import {ChatAppComponent} from "./chat-app/chat-app.component";
 import {ChatMessagesService} from "./service/chat-messages.service";
 
 const routes: Routes = [
@@ -66,7 +65,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [EulerService, MessageService, ChatMessagesService, youTubeSearcInjectables],
   bootstrap: [AppComponent]
