@@ -1,13 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticleComponent } from './article.component';
-import {Component} from "@angular/core";
-import {Article} from "./article.model";
+import { Component } from "@angular/core";
+import { Article } from "./article.model";
 
 describe('ArticleComponent', () => {
-  let component: ArticleComponent;
-  let fixture: ComponentFixture<ArticleComponent>;
-
   let testHostComponent: TestHostComponent;
   let testHostFixture: ComponentFixture<TestHostComponent>;
 
@@ -42,6 +39,22 @@ describe('ArticleComponent', () => {
 
   it('should show domain "projecteuler.net"', () => {
     expect(testHostFixture.nativeElement.querySelector('div#domain').innerText).toEqual("projecteuler.net");
+  });
+
+  it('should show upVote "upvote"', () => {
+    expect(testHostFixture.nativeElement.querySelector('a#voteUp').innerText).toEqual("upvote");
+  });
+
+  it('should show "Arrow Up Icon"', () => {
+    expect(testHostFixture.nativeElement.querySelector('i#ArrowUpIcon').toBe);
+  });
+
+  it('should show upVote "downvote"', () => {
+    expect(testHostFixture.nativeElement.querySelector('a#voteUp').innerText).toEqual("upvote");
+  });
+
+  it('should show "Arrow Down Icon"', () => {
+    expect(testHostFixture.nativeElement.querySelector('i#ArrowDownIcon').toBe);
   });
 
 });
