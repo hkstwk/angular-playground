@@ -42,7 +42,6 @@ describe('ProductImageComponent', () => {
       109.99);
     testHostComponent.setProduct(product);
     testHostFixture.detectChanges();
-    console.log(testHostFixture.nativeElement.querySelector('img#productImg'));
     expect(testHostFixture.nativeElement.querySelector('img#productImg').toBe);
   });
 

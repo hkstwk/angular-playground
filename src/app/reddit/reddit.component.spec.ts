@@ -23,7 +23,6 @@ describe('RedditComponent', () => {
   it(`should have four articles`, () => {
     const fixture = TestBed.createComponent(RedditComponent);
     const comp = fixture.debugElement.componentInstance;
-    console.log(comp);
     expect(comp.articles.length).toEqual(4);
   });
 
