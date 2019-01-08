@@ -45,7 +45,7 @@ describe('ProductRowComponent', () => {
     testHostComponent = testHostFixture.componentInstance;
   });
 
-  it('should show product name BLACK RUNNING SHOES', () => {
+  it('should show product department "Men > Shoes > Running Shoes\n"', () => {
     let product = new Product(
         'MYSHOES',
         'Black Running Shoes',
@@ -54,11 +54,42 @@ describe('ProductRowComponent', () => {
         109.99);
     testHostComponent.setProduct(product);
     testHostFixture.detectChanges();
-    expect(testHostFixture.nativeElement.querySelector('div#productName').innerText).toEqual("Black Running Shoes");
-    expect(testHostFixture.nativeElement.querySelector('div#productSKU').innerText).toEqual("SKU #MYSHOES");
     expect(testHostFixture.nativeElement.querySelector('product-department#productDept').innerText).toEqual("Men > Shoes > Running Shoes\n");
-    // expect(testHostFixture.nativeElement.querySelector('product-image#productImg').innerHTML).toEqual(host + '/assets/images/products/black-hat.jpg');
+  });
 
+  it('should show product name BLACK RUNNING SHOES', () => {
+    let product = new Product(
+      'MYSHOES',
+      'Black Running Shoes',
+      '../assets/images/products/black-shoes.jpg',
+      ['Men', 'Shoes', 'Running Shoes'],
+      109.99);
+    testHostComponent.setProduct(product);
+    testHostFixture.detectChanges();
+    expect(testHostFixture.nativeElement.querySelector('div#productName').innerText).toEqual("Black Running Shoes");
+  });
 
+  it('should show "SKU #MYSHOES"', () => {
+    let product = new Product(
+      'MYSHOES',
+      'Black Running Shoes',
+      '../assets/images/products/black-shoes.jpg',
+      ['Men', 'Shoes', 'Running Shoes'],
+      109.99);
+    testHostComponent.setProduct(product);
+    testHostFixture.detectChanges();
+    expect(testHostFixture.nativeElement.querySelector('div#productSKU').innerText).toEqual("SKU #MYSHOES");
+  });
+
+  it('should have image src "../assets/images/products/black-shoes.jpg" in innerHTML', () => {
+    let product = new Product(
+      'MYSHOES',
+      'Black Running Shoes',
+      '../assets/images/products/black-shoes.jpg',
+      ['Men', 'Shoes', 'Running Shoes'],
+      109.99);
+    testHostComponent.setProduct(product);
+    testHostFixture.detectChanges();
+    expect(testHostFixture.nativeElement.querySelector('product-image#productImg').innerHTML).toContain('../assets/images/products/black-shoes.jpg');
   });
 });
