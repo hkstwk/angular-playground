@@ -4,7 +4,6 @@ import { SearchResultComponent } from './search-result.component';
 import { SearchResult } from "../model/search-result.model";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import {YouTubeSearchService} from "../you-tube-search/you-tube-search.service";
 
 describe('SearchResultComponent', () => {
   let component: SearchResultComponent;
