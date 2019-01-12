@@ -55,7 +55,6 @@ describe('SearchResultComponent', () => {
 
   it('should render result video in an \<a\> ', () => {
     debugEl = fixture.debugElement.query(By.css('a'));
-    console.log(debugEl);
     fixture.detectChanges();
     expect(debugEl.nativeElement.href).toBe("https://www.youtube.com/watch?v=3kZfgpnI__s");
   });
