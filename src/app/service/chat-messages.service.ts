@@ -3,7 +3,7 @@ import {Subject, Observable} from "rxjs";
 import {User} from "../model/user.model";
 import {Thread} from "../model/thread.model";
 import {ChatMessage} from "../model/chat-message.model";
-import {filter, scan, publishReplay, refCount, map} from "rxjs/internal/operators";
+import {filter, scan, publishReplay, refCount, map} from "rxjs/operators";
 
 const initialChatMessages:ChatMessage[]=[];
 
@@ -21,7 +21,8 @@ export class ChatMessagesService {
   chatMessages: Observable<ChatMessage[]>;
 
   // `updates` receives _operations_ to be applied to our `chatMessages`
-  // it's a way we can perform changes on *all* chatMessages (that are currently // stored in `chatMessages`)
+  // it's a way we can perform changes on *all* chatMessages (that are currently
+  // stored in `chatMessages`)
   updates: Subject<any> = new Subject<any>();
 
   // action streams
@@ -73,13 +74,16 @@ export class ChatMessagesService {
 
   chatMessagesForThreadUser(thread: Thread, user: User): Observable<ChatMessage> {
     return this.newChatMessages.pipe(
-      filter((chatMessage: ChatMessage) => {
-        // belongs to this thread
-        return (chatMessage.thread.id === thread.id) &&
-          // and isn't authored by this user
-          (chatMessage.author.id !== user.id);
-      }))
-  }
-
+        filter((chatMessage: ChatMessage) => {
+          // belongs to this thread
+            return (chatMessage.thread.id === thread.id) &&
+          // where user is not the author
+            (chatMessage.author.id !== user.id);
+        })
+  )}
 
 }
+
+export const messagesServiceInjectables: Array<any> = [
+  ChatMessagesService
+];
