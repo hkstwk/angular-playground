@@ -1,7 +1,7 @@
 import {Component, OnInit, EventEmitter, Output, ElementRef} from '@angular/core';
 import {SearchResult} from "../model/search-result.model";
 import {YouTubeSearchService} from "../you-tube-search/you-tube-search.service";
-import {Observable, fromEvent} from "rxjs";
+import {fromEvent} from "rxjs";
 import { map, filter, debounceTime, tap, switchAll } from 'rxjs/operators';
 
 @Component({
