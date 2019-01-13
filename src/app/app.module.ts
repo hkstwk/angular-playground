@@ -27,47 +27,48 @@ import {ChatAppComponent} from "./chat-app/chat-app.component";
 import {ChatMessagesService} from "./service/chat-messages.service";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'reddit', pathMatch: 'full' },
-  { path: 'reddit', component: RedditComponent },
-  { path: 'inventory', component: InventoryComponent },
-  { path: 'directives', component: DirectivesComponent },
-  { path: 'form', component: DemoSkuComponent },
-  { path: 'http', component: SimpleHttpComponent },
-  { path: 'youtube_search', component: YouTubeSearchComponent },
-  { path: 'euler', component: EulerComponent },
-  { path: 'observables', component: AboutComponent }
+    {path: '', redirectTo: 'reddit', pathMatch: 'full'},
+    {path: 'reddit', component: RedditComponent},
+    {path: 'inventory', component: InventoryComponent},
+    {path: 'directives', component: DirectivesComponent},
+    {path: 'form', component: DemoSkuComponent},
+    {path: 'http', component: SimpleHttpComponent},
+    {path: 'youtube_search', component: YouTubeSearchComponent},
+    {path: 'euler', component: EulerComponent},
+    {path: 'observables', component: AboutComponent}
 ];
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ArticleComponent,
-    RedditComponent,
-    AboutComponent,
-    InventoryComponent,
-    ProductsListComponent,
-    ProductRowComponent,
-    ProductImageComponent,
-    PriceDisplayComponent,
-    ProductDepartmentComponent,
-    DirectivesComponent,
-    DemoSkuComponent,
-    SimpleHttpComponent,
-    YouTubeSearchComponent,
-    SearchBoxComponent,
-    SearchResultComponent,
-    EulerComponent,
-    ChatAppComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(routes),
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-  ],
-  providers: [EulerService, MessageService, ChatMessagesService, youTubeSearcInjectables],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ArticleComponent,
+        RedditComponent,
+        AboutComponent,
+        InventoryComponent,
+        ProductsListComponent,
+        ProductRowComponent,
+        ProductImageComponent,
+        PriceDisplayComponent,
+        ProductDepartmentComponent,
+        DirectivesComponent,
+        DemoSkuComponent,
+        SimpleHttpComponent,
+        YouTubeSearchComponent,
+        SearchBoxComponent,
+        SearchResultComponent,
+        EulerComponent,
+        ChatAppComponent
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes),
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+    ],
+    providers: [EulerService, MessageService, ChatMessagesService, youTubeSearcInjectables],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
