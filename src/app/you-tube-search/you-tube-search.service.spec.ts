@@ -57,6 +57,7 @@ describe('YouTubeSearchService', () => {
         });
 
         expect(response).toEqual(searchResponse);
+        expect(service.search).toHaveBeenCalledWith('aap noot mies');
     });
 
 });
