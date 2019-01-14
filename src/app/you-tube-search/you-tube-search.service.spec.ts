@@ -49,10 +49,10 @@ describe('YouTubeSearchService', () => {
                 videoUrl: "https://www.youtube.com/watch?v=u8adwRcSYB0"
             }
         ];
-        let response: Observable<SearchResult[]>;
+        let response: SearchResult[];
         spyOn(service, 'search').and.returnValue(of(searchResponse));
 
-        service.search('aap noot mies').subscribe(res => {
+        service.search('aap noot mies').subscribe((res: SearchResult[]) => {
             response = res;
         });
 
