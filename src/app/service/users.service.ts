@@ -6,7 +6,7 @@ import { User } from "../model/user.model";
   providedIn: 'root'
 })
 export class UsersService {
-  //`currentUser` contains the current user
+  //`currentUser stream contains the current user
   currentUser: Subject<User> = new BehaviorSubject<User>(null);
 
   constructor() { }
