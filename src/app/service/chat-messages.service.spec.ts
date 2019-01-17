@@ -4,9 +4,9 @@ import {Thread} from "../model/thread.model";
 import {ChatMessage} from "../model/chat-message.model";
 import {TestBed, async} from "@angular/core/testing";
 
-export const user1: User = new User('Harm', '');
-export const user2: User = new User('Bea', '');
-export const thread1: Thread = new Thread('t1', 'Thread Harm', '');
+export const user1: User = new User('User1', '');
+export const user2: User = new User('User2', '');
+export const thread1: Thread = new Thread('t1', 'Thread One', '');
 
 export const m1: ChatMessage = new ChatMessage({
   author: user2,
@@ -102,8 +102,8 @@ describe('ChatMessagesService', () => {
 
     service.addMessage(m3);
 
-    expect(chatMessage.author.name).toBe('Bea');
-    expect(chatMessage.thread.name).toBe('Thread Harm');
+    expect(chatMessage.author.name).toBe('User2');
+    expect(chatMessage.thread.name).toBe('Thread One');
     expect(chatMessage.text).toContain('=> 3');
   });
 
