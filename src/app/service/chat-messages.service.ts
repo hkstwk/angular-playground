@@ -49,6 +49,18 @@ export class ChatMessagesService {
       })
     ).subscribe(this.updates);
 
+    this.create.subscribe( (value: any) =>{
+      console.log(value);
+    });
+
+    this.updates.subscribe( (value: any) =>{
+      console.log(value);
+    });
+
+    this.chatMessages.subscribe( (cm: ChatMessage[]) => {
+      console.log(cm);
+    });
+
     this.newChatMessages.subscribe(this.create);
 
     this.markThreadAsRead
