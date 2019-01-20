@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {Observable, Subject, BehaviorSubject} from "rxjs";
 import {Thread} from "../model/thread.model";
 import {ChatMessagesService} from "./chat-messages.service";
 import {ChatMessage} from "../model/chat-message.model";
@@ -16,6 +16,9 @@ export class ThreadsService {
   // `orderedThreads` contains a newest-chatMessage-first chronological list of threads
   orderedThreads: Observable<Thread[]>;
 
+  // `currentThread` contains the currently selected thread
+  currentThread: Subject<Thread> = new BehaviorSubject<Thread>(new Thread());
+
   constructor(chatMessagesService: ChatMessagesService) {
     this.threads = chatMessagesService.chatMessages.pipe(
       map((_chatMessages: ChatMessage[]) => {
@@ -24,7 +27,7 @@ export class ThreadsService {
 
         // Store the message's thread in our accumulator `threads`
         _chatMessages.map((_chatMessage: ChatMessage) => {
-            threads[_chatMessage.thread.id] = threads[_chatMessage.thread.id] ||
+          threads[_chatMessage.thread.id] = threads[_chatMessage.thread.id] ||
             _chatMessage.thread;
 
           // Cache the most recent message for each thread
@@ -41,12 +44,17 @@ export class ThreadsService {
     );
 
     this.orderedThreads = this.threads.pipe(
-      map( (thrds : { [key: string]: Thread } ) => {
-        const threads : Thread[] = _.values(thrds);
-        return _.sortBy(threads, (t : Thread) => t.lastMessage.sentAt).reverse();
+      map((thrds: {[key: string]: Thread}) => {
+        const threads: Thread[] = _.values(thrds);
+        return _.sortBy(threads, (t: Thread) => t.lastMessage.sentAt).reverse();
       }));
+
+    this.currentThread.subscribe(chatMessagesService.markThreadAsRead);
 
   }
 
+  setCurrentThread(newThread: Thread) : void {
+    this.currentThread.next(newThread);
+  };
 
 }
