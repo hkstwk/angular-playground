@@ -4,7 +4,6 @@ import {User} from "../model/user.model";
 import {Thread} from "../model/thread.model";
 import {ChatMessage} from "../model/chat-message.model";
 import {filter, scan, publishReplay, refCount, map} from "rxjs/operators";
-import {debounceTime} from "rxjs/internal/operators";
 
 const initialChatMessages:ChatMessage[]=[];
 

@@ -38,7 +38,7 @@ describe('ThreadsService', () => {
 
     threadsService.orderedThreads
       .subscribe((threadIdx: {[key: string]: Thread}) => {
-        console.log(threadIdx);
+        // console.log(threadIdx);
         orderedThreads = _.values(threadIdx);
       });
   });

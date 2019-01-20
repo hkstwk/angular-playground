@@ -1,9 +1,11 @@
 import {Injectable} from "@angular/core";
-import {Observable, Subject, BehaviorSubject} from "rxjs";
+import {Observable, Subject, BehaviorSubject, combineLatest} from "rxjs";
 import {Thread} from "../model/thread.model";
 import {ChatMessagesService} from "./chat-messages.service";
 import {ChatMessage} from "../model/chat-message.model";
 import {map} from "rxjs/internal/operators";
+import * as _ from 'lodash';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,9 @@ export class ThreadsService {
 
   // `currentThread` contains the currently selected thread
   currentThread: Subject<Thread> = new BehaviorSubject<Thread>(new Thread());
+
+  // `currentThreadMessages` contains the set of messages for the currently // selected thread
+  currentThreadMessages: Observable<ChatMessage[]>;
 
   constructor(chatMessagesService: ChatMessagesService) {
     this.threads = chatMessagesService.chatMessages.pipe(
@@ -38,7 +43,6 @@ export class ThreadsService {
           }
 
         });
-        console.log(threads);
         return threads;
       })
     );
@@ -51,9 +55,9 @@ export class ThreadsService {
 
     this.currentThread.subscribe(chatMessagesService.markThreadAsRead);
 
-  }
+  };
 
-  setCurrentThread(newThread: Thread) : void {
+  setCurrentThread(newThread: Thread): void {
     this.currentThread.next(newThread);
   };
 
