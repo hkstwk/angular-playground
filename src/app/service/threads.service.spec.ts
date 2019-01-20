@@ -1,16 +1,17 @@
-import {TestBed} from '@angular/core/testing';
-
-import {ThreadsService} from './threads.service';
-import {async} from "@angular/core/testing";
-import {User} from "../model/user.model";
+import {TestBed, async} from "@angular/core/testing";
+import {ThreadsService} from "./threads.service";
 import {Thread} from "../model/thread.model";
-import {ChatMessage} from "../model/chat-message.model";
 import {ChatMessagesService} from "./chat-messages.service";
-import * as _ from 'lodash';
+import * as _ from "lodash";
+import {m6, m1, m2, m3, m4, m5} from "../model/chat-message.data";
 
 describe('ThreadsService', () => {
 
   let service = ThreadsService;
+  let chatMessagesService: ChatMessagesService;
+  let threadsService: ThreadsService;
+  let threads: Thread[];
+  let threadNames: string;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,49 +23,61 @@ describe('ThreadsService', () => {
     service = TestBed.get(ThreadsService);
   }));
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('should collect the Threads from Messages', () => {
-    const nate: User = new User('Nate Murray', '');
-    const felipe: User = new User('Felipe Coury', '');
-
-    const t1: Thread = new Thread('t1', 'Thread 1', '');
-    const t2: Thread = new Thread('t2', 'Thread 2', '');
-
-    const m1: ChatMessage = new ChatMessage({
-      author: nate,
-      text: 'Hi!',
-      thread: t1
-    });
-    const m2: ChatMessage = new ChatMessage({
-      author: felipe,
-      text: 'Where did you get that hat?',
-      thread: t1
-    });
-    const m3: ChatMessage = new ChatMessage({
-      author: nate,
-      text: 'Did you bring the briefcase?',
-      thread: t2
-    });
-
-    const chatMessagesService: ChatMessagesService = new ChatMessagesService();
-    const threadsService: ThreadsService = new ThreadsService(chatMessagesService);
+  beforeEach(() => {
+    chatMessagesService = new ChatMessagesService();
+    threadsService = new ThreadsService(chatMessagesService);
 
     threadsService.threads
       .subscribe((threadIdx: {[key: string]: Thread}) => {
-        const threads: Thread[] = _.values(threadIdx);
-        const threadNames: string = _.map(threads, (t: Thread) => t.name)
+        threads = _.values(threadIdx);
+        threadNames = _.map(threads, (t: Thread) => t.name)
           .join(', ');
         console.log(`=> threads (${threads.length}): ${threadNames} `);
       });
+  });
+
+  afterEach(() => {
+    chatMessagesService = null;
+    threadsService = null;
+    threads = null;
+    threadNames = null;
+  });
+
+  it('should be created', () => {
+
+    expect(service).toBeTruthy();
+
+  });
+
+  it('should collect one thread with two messages, with latest message being \'m2\'', () => {
+
+    chatMessagesService.addMessage(m1);
+    expect(threads.length).toBe(1);
+
+    chatMessagesService.addMessage(m2);
+    expect(threads.length).toBe(1);
+    expect(threads[0].lastMessage.text).toBe('Where did you get that hat?');
+
+  });
+
+
+  it('should collect one thread with name \'Thread 1\'', () => {
+
+    chatMessagesService.addMessage(m1);
+    expect(threads[0].name).toBe('Thread 1');
+
+  });
+
+  it('should collect three Threads', () => {
 
     chatMessagesService.addMessage(m1);
     chatMessagesService.addMessage(m2);
     chatMessagesService.addMessage(m3);
+    chatMessagesService.addMessage(m4);
+    chatMessagesService.addMessage(m5);
+    chatMessagesService.addMessage(m6);
 
-    // => threads (1): Thread 1
-    // => threads (1): Thread 1
+    expect(threads.length).toBe(3);
+
   });
 });

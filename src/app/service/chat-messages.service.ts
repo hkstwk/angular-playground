@@ -4,6 +4,7 @@ import {User} from "../model/user.model";
 import {Thread} from "../model/thread.model";
 import {ChatMessage} from "../model/chat-message.model";
 import {filter, scan, publishReplay, refCount, map} from "rxjs/operators";
+import {debounceTime} from "rxjs/internal/operators";
 
 const initialChatMessages:ChatMessage[]=[];
 
@@ -38,7 +39,7 @@ export class ChatMessagesService {
         initialChatMessages),
       // make sure we can share the most recent list of chatMessages across anyone
       publishReplay(1),
-      refCount()
+      refCount(),
     );
 
     this.create.pipe(
@@ -49,6 +50,7 @@ export class ChatMessagesService {
       })
     ).subscribe(this.updates);
 
+/*
     this.create.subscribe( (value: any) =>{
       console.log(value);
     });
@@ -60,6 +62,7 @@ export class ChatMessagesService {
     this.chatMessages.subscribe( (cm: ChatMessage[]) => {
       console.log(cm);
     });
+*/
 
     this.newChatMessages.subscribe(this.create);
 

@@ -22,7 +22,7 @@ export class ThreadsService {
 
         // Store the message's thread in our accumulator `threads`
         _chatMessages.map((_chatMessage: ChatMessage) => {
-          threads[_chatMessage.thread.id] = threads[_chatMessage.thread.id] ||
+            threads[_chatMessage.thread.id] = threads[_chatMessage.thread.id] ||
             _chatMessage.thread;
 
           // Cache the most recent message for each thread
@@ -33,6 +33,7 @@ export class ThreadsService {
           }
 
         });
+        console.log(threads);
         return threads;
       })
     );
