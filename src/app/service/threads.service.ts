@@ -10,9 +10,11 @@ import {map} from "rxjs/internal/operators";
 })
 export class ThreadsService {
 
-  // `threads` is a observable that contains the most up to date
-  // list of threads
+  // `threads` is a observable that contains the most up to date list of threads
   threads: Observable<{[key: string]: Thread}>;
+
+  // `orderedThreads` contains a newest-chatMessage-first chronological list of threads
+  orderedThreads: Observable<Thread[]>;
 
   constructor(chatMessagesService: ChatMessagesService) {
     this.threads = chatMessagesService.chatMessages.pipe(
@@ -37,6 +39,13 @@ export class ThreadsService {
         return threads;
       })
     );
+
+    this.orderedThreads = this.threads.pipe(
+      map( (thrds : { [key: string]: Thread } ) => {
+        const threads : Thread[] = _.values(thrds);
+        return _.sortBy(threads, (t : Thread) => t.lastMessage.sentAt).reverse();
+      }));
+
   }
 
 
