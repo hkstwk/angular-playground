@@ -25,6 +25,8 @@ import {EulerService} from "./euler/euler.service";
 import {MessageService} from "./about/message.service";
 import {ChatAppComponent} from "./chat-app/chat-app.component";
 import {ChatMessagesService} from "./service/chat-messages.service";
+import {ChatThreadsComponent} from "./chat-threads/chat-threads.component";
+import { ChatThreadComponent } from './chat-thread/chat-thread.component';
 
 const routes: Routes = [
     {path: '', redirectTo: 'reddit', pathMatch: 'full'},
@@ -35,7 +37,8 @@ const routes: Routes = [
     {path: 'http', component: SimpleHttpComponent},
     {path: 'youtube_search', component: YouTubeSearchComponent},
     {path: 'euler', component: EulerComponent},
-    {path: 'observables', component: AboutComponent}
+    {path: 'observables', component: AboutComponent},
+  {path: 'chat', component: ChatThreadsComponent}
 ];
 
 
@@ -58,7 +61,9 @@ const routes: Routes = [
         SearchBoxComponent,
         SearchResultComponent,
         EulerComponent,
-        ChatAppComponent
+        ChatAppComponent,
+        ChatThreadsComponent,
+        ChatThreadComponent
     ],
     imports: [
         BrowserModule,
