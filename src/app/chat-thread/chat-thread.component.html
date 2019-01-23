@@ -1,11 +1,13 @@
 <div class="ui segment">
-  <div class="ui left floated">
+  <div class="ui header">
     <img class="ui avatar mini image" src="{{thread.avatarSrc}}">
-    <span class="ui field"> {{thread.name}}
-        <span *ngIf="selected">&bull;</span>
-      </span>
-    <br/>
-    <small class="message">{{thread.lastMessage.text}}</small>
-    <a (click)="clicked($event)" class="ui link">Select</a>
+    <div class="content">
+      {{thread.name}}
+      <span *ngIf="selected">&bull;</span>
+      <div class="sub header">
+        <small class="message">{{thread.lastMessage.text}}</small>
+        <a (click)="clicked($event)" class="ui link">Select</a>
+      </div>
+    </div>
   </div>
 </div>
