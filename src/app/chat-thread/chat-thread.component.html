@@ -1,14 +1,11 @@
-<div class="row">
-  <div class="column">
-    <div class="ui left floated">
-      <img class="ui avatar image" src="{{thread.avatarSrc}}">
-      <span class="ui field"> {{thread.name}}
+<div class="ui segment">
+  <div class="ui left floated">
+    <img class="ui avatar mini image" src="{{thread.avatarSrc}}">
+    <span class="ui field"> {{thread.name}}
         <span *ngIf="selected">&bull;</span>
       </span>
-    </div>
-    <div>
-      <small class="message">{{thread.lastMessage.text}}</small>
-    </div>
+    <br/>
+    <small class="message">{{thread.lastMessage.text}}</small>
     <a (click)="clicked($event)" class="ui link">Select</a>
   </div>
 </div>

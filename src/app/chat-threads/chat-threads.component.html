@@ -1,6 +1,8 @@
-<div class="ui one column grid">
-<chat-thread
-  *ngFor="let thread of threads | async"
-  [thread]="thread">
-</chat-thread>
+<div class="ui container">
+  <div class="ui segments">
+    <chat-thread
+      *ngFor="let thread of threads | async"
+      [thread]="thread">
+    </chat-thread>
+  </div>
 </div>
