@@ -2,12 +2,12 @@ import {Thread} from "./thread.model";
 import {ChatMessage} from "./chat-message.model";
 import {User} from "./user.model";
 
-export const t1: Thread = new Thread('t1', 'Thread 1', '');
-export const t2: Thread = new Thread('t2', 'Thread 2', '');
-export const t3: Thread = new Thread('t3', 'Thread 3', '');
+export const t1: Thread = new Thread('t1', 'Thread 1', 'assets/images/avatars/male-avatar-2.png');
+export const t2: Thread = new Thread('t2', 'Thread 2', 'assets/images/avatars/female-avatar-3.png');
+export const t3: Thread = new Thread('t3', 'Thread 3', 'assets/images/avatars/female-avatar-1.png');
 
-export const felipe: User = new User('Felipe Coury', '');
-export const nate: User = new User('Nate Murray', '');
+export const felipe: User = new User('Felipe Coury', 'assets/images/avatars/male-avatar-2.png');
+export const nate: User = new User('Nate Murray', 'assets/images/avatars/male-avatar-1.png');
 
 export const m1: ChatMessage = new ChatMessage({
   author: nate,
@@ -41,7 +41,7 @@ export const m5: ChatMessage = new ChatMessage({
 });
 export const m6: ChatMessage = new ChatMessage({
   author: felipe,
-  text: 'Just another Thread...',
+    text: 'Just another messsage on Thread 3...',
   sentAt: new Date('Tue Feb 5 2019 20:38:37 GMT+0100'),
   thread: t3
 });

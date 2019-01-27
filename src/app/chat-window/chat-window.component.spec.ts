@@ -1,5 +1,10 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {ChatWindowComponent} from "./chat-window.component";
+import {ChatMessageComponent} from "../chat-message/chat-message.component";
+import {messagesServiceInjectables, ChatMessagesService} from "../service/chat-messages.service";
+import {threadsServiceInjectables, ThreadsService} from "../service/threads.service";
+import {UsersService} from "../service/users.service";
+import {FormsModule} from "@angular/forms";
 
 describe('ChatWindowComponent', () => {
     let component: ChatWindowComponent;
@@ -7,7 +12,20 @@ describe('ChatWindowComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ChatWindowComponent]
+            declarations: [
+                ChatWindowComponent,
+                ChatMessageComponent
+            ],
+            providers: [
+                messagesServiceInjectables,
+                threadsServiceInjectables,
+                ChatMessagesService,
+                ThreadsService,
+                UsersService
+            ],
+            imports: [
+                FormsModule
+            ]
         })
             .compileComponents();
     }));
