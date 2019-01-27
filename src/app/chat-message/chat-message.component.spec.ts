@@ -35,7 +35,6 @@ describe('ChatMessageComponent', () => {
   });
 
   it('should create', () => {
-    console.log(component.message.author.avatarSrc);
     expect(component).toBeTruthy();
   });
 });
