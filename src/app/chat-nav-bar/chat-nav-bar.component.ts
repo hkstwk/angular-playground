@@ -24,7 +24,7 @@ export class ChatNavBarComponent implements OnInit {
             this.chatMessagesService.chatMessages,
             this.threadsService.currentThread,
             (messages: ChatMessage[], currentThread: Thread) => {
-                [currentThread, messages]
+                return [currentThread, messages]
             }
         )
 
