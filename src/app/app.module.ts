@@ -27,6 +27,7 @@ import {ChatAppComponent} from "./chat-app/chat-app.component";
 import {ChatMessagesService} from "./service/chat-messages.service";
 import {ChatThreadsComponent} from "./chat-threads/chat-threads.component";
 import { ChatThreadComponent } from './chat-thread/chat-thread.component';
+import { ChatMessageComponent } from './chat-message/chat-message.component';
 
 const routes: Routes = [
     {path: '', redirectTo: 'reddit', pathMatch: 'full'},
@@ -63,7 +64,8 @@ const routes: Routes = [
         EulerComponent,
         ChatAppComponent,
         ChatThreadsComponent,
-        ChatThreadComponent
+        ChatThreadComponent,
+        ChatMessageComponent
     ],
     imports: [
         BrowserModule,

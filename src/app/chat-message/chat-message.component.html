@@ -1,0 +1,14 @@
+<div *ngIf="!incoming" class="ui tiny image">
+  <img src="{{message.author.avatarSrc}}">
+</div>
+<div class="content">
+  <div class="description">
+    {{message.text}}
+  </div>
+  <div class="meta">
+    <span class="time">{{message.sentAt}}</span>
+  </div>
+</div>
+<div *ngIf="incoming" class="ui tiny image">
+  <img src="{{message.author.avatarSrc}}">
+</div>

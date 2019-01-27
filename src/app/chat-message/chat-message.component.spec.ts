@@ -1,27 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatThreadsComponent } from './chat-threads.component';
-import {ChatThreadComponent} from "../chat-thread/chat-thread.component";
+import { ChatMessageComponent } from './chat-message.component';
 import {ChatMessagesService, messagesServiceInjectables} from "../service/chat-messages.service";
 import {ThreadsService, threadsServiceInjectables} from "../service/threads.service";
 import {UsersService} from "../service/users.service";
-import {ChatMessageComponent} from "../chat-message/chat-message.component";
 
-describe('ChatThreadsComponent', () => {
-  let component: ChatThreadsComponent;
-  let fixture: ComponentFixture<ChatThreadsComponent>;
+describe('ChatMessageComponent', () => {
+  let component: ChatMessageComponent;
+  let fixture: ComponentFixture<ChatMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ChatThreadsComponent,
-        ChatThreadComponent,
-        ChatMessageComponent
+        ChatMessageComponent,
       ],
       providers: [
-        UsersService,
-        ThreadsService,
         ChatMessagesService,
+        ThreadsService,
+        UsersService,
         threadsServiceInjectables,
         messagesServiceInjectables
       ]
@@ -30,12 +26,12 @@ describe('ChatThreadsComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatThreadsComponent);
+    fixture = TestBed.createComponent(ChatMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create ', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

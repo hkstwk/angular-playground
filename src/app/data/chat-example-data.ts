@@ -19,7 +19,7 @@ const tEcho: Thread    = new Thread('tEcho', echo.name, echo.avatarSrc);
 const tRev: Thread     = new Thread('tRev', rev.name, rev.avatarSrc);
 const tWait: Thread    = new Thread('tWait', wait.name, wait.avatarSrc);
 
-const initialMessages: Array<ChatMessage> = [
+export const initialMessages: Array<ChatMessage> = [
   new ChatMessage({
     author: me,
     sentAt: moment().subtract(45, 'minutes').toDate(),

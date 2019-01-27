@@ -1,8 +1,10 @@
-<!--<div class="ui container">-->
 <div class="ui divided items">
   <chat-thread class="item"
                *ngFor="let thread of threads | async"
                [thread]="thread">
   </chat-thread>
 </div>
-<!--</div>-->
+<div class="ui divided items">
+  <chat-message class="item"
+                [message]="message"></chat-message>
+</div>
