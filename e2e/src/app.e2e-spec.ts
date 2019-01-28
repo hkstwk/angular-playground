@@ -9,6 +9,6 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to angular-playground!');
+    expect(page.getParagraphText()).toEqual('ng-book2 on Angular 7');
   });
 });
