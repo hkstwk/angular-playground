@@ -1,16 +1,14 @@
-<div class="ui image">
+<div class="ui tiny image">
   <img src="{{thread.avatarSrc}}">
 </div>
 <div class="content">
-  <div class="header">
-    {{thread.name}}
-    <span *ngIf="selected">&bull;</span>
+  <div>
+    <h3>
+      <a id="clicked" (click)="clicked($event)">{{thread.name}} </a>
+      <span *ngIf="selected">&bull;</span>
+    </h3>
   </div>
   <div class="description">
-    <p></p>
-    <div class="message">{{thread.lastMessage.text}}</div>
-  </div>
-  <div class="extra">
-      <div class="ui label"><a id="clicked" (click)="clicked($event)">Select</a></div>
+    <div>{{thread.lastMessage.text}}</div>
   </div>
 </div>
