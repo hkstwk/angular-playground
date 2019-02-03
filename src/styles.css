@@ -111,5 +111,10 @@ cf {
   *zoom: 1;
 }
 
+.angular-playground-container{
+  max-width:85%;
+  margin:auto;
+}
+
 
 
