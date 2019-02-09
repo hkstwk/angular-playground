@@ -30,6 +30,7 @@ import {ChatThreadComponent} from "./chat-thread/chat-thread.component";
 import {ChatMessageComponent} from "./chat-message/chat-message.component";
 import {ChatWindowComponent} from "./chat-window/chat-window.component";
 import {ChatNavBarComponent} from "./chat-nav-bar/chat-nav-bar.component";
+import { IconsComponent } from './icons/icons.component';
 
 const routes: Routes = [
     {path: '', redirectTo: 'reddit', pathMatch: 'full'},
@@ -41,7 +42,8 @@ const routes: Routes = [
     {path: 'youtube_search', component: YouTubeSearchComponent},
     {path: 'euler', component: EulerComponent},
     {path: 'observables', component: AboutComponent},
-    {path: 'chat', component: ChatAppComponent}
+    {path: 'chat', component: ChatAppComponent},
+  {path: 'icons', component: IconsComponent}
 ];
 
 
@@ -69,7 +71,8 @@ const routes: Routes = [
         ChatThreadComponent,
         ChatMessageComponent,
         ChatWindowComponent,
-        ChatNavBarComponent
+        ChatNavBarComponent,
+        IconsComponent
     ],
     imports: [
         BrowserModule,

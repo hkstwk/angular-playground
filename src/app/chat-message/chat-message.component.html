@@ -1,6 +1,7 @@
-<div *ngIf="!incoming" class="ui tiny image">
+<div class="ui tiny circular image" *ngIf="!incoming">
   <img src="{{message.author.avatarSrc}}">
 </div>
+
 <div class="content">
   <div class="description">
     {{message.text}}
@@ -9,6 +10,7 @@
     <span class="time">{{message.sentAt}}</span>
   </div>
 </div>
-<div *ngIf="incoming" class="ui tiny image">
+
+<div class="ui tiny circular image" *ngIf="incoming">
   <img src="{{message.author.avatarSrc}}">
 </div>
