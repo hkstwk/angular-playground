@@ -8,7 +8,7 @@ import { UsersService } from '../service/users.service';
 import * as moment from 'moment';
 
 // the person using the app us Juliet
-const me: User      = new User('Juliet', 'assets/images/avatars/female-avatar-1.png');
+const me: User      = new User('Juliet', 'assets/images/avatars/female-avatar-3.png');
 const ladycap: User = new User('Lady Capulet', 'assets/images/avatars/female-avatar-2.png');
 const echo: User    = new User('Echo Bot', 'assets/images/avatars/male-avatar-1.png');
 const rev: User     = new User('Reverse Bot', 'assets/images/avatars/female-avatar-4.png');

@@ -5,7 +5,13 @@ div.ui.items.hk {
 }
 
 div.ui.fluid.action.input {
-  vertical-align:
+  vertical-align: bottom;
+}
+
+h3.panel-title {
+  background-color: #666666;
+  text-align: center;
+  color: #ffffff;
 }
 
 div.chat-window-container {

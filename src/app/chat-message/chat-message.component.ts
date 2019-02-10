@@ -2,6 +2,7 @@ import {Component, OnInit, Input} from "@angular/core";
 import {ChatMessage} from "../model/chat-message.model";
 import {User} from "../model/user.model";
 import {UsersService} from "../service/users.service";
+import * as moment from 'moment';
 
 @Component({
   selector: 'chat-message',
@@ -12,6 +13,7 @@ export class ChatMessageComponent implements OnInit {
   @Input() message: ChatMessage;
   currentUser: User;
   incoming: boolean;
+  ago: any;
 
     constructor(public usersService: UsersService) {
     }
@@ -24,6 +26,7 @@ export class ChatMessageComponent implements OnInit {
           this.incoming = this.message.author.id !== user.id;
         }
       });
+    this.ago = moment(this.message.sentAt).fromNow();
   }
 
 }
