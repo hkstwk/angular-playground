@@ -9,9 +9,17 @@ div.ui.fluid.action.input {
 }
 
 h3.panel-title {
-  background-color: #666666;
+  background-color: #DCDCDC;
+  border-radius: 5px;
   text-align: center;
-  color: #ffffff;
+  color: #333333;
+  padding: 0.5em;
+}
+
+.effect1 {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 div.chat-window-container {
