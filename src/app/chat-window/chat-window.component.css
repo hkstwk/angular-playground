@@ -19,7 +19,7 @@ h3.panel-title {
 .effect1 {
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
-  box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 5px 6px -6px #777;
 }
 
 div.chat-window-container {
