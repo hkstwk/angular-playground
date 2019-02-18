@@ -54,7 +54,7 @@ describe('ProductRowComponent', () => {
         109.99);
     testHostComponent.setProduct(product);
     testHostFixture.detectChanges();
-    expect(testHostFixture.nativeElement.querySelector('product-department#productDept').innerText).toEqual("Men > Shoes > Running Shoes\n");
+    expect(testHostFixture.nativeElement.querySelector('product-department#productDept').innerText).toEqual("Men > Shoes > Running Shoes");
   });
 
   it('should show product name BLACK RUNNING SHOES', () => {
