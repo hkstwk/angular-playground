@@ -1,15 +1,9 @@
-import {TestBed} from "@angular/core/testing";
+import {TestBed, inject} from "@angular/core/testing";
 import {EulerService} from "./euler.service";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-import {Euler001Request} from "./euler001request";
-import {inject} from "@angular/core/testing";
 import {Euler001Response} from "./euler001response";
 
 describe('EulerService', () => {
-
-    let service: EulerService;
-    let httpMock: HttpTestingController;
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
@@ -19,18 +13,15 @@ describe('EulerService', () => {
                 HttpClientTestingModule
             ],
         });
-
-        service = TestBed.get(EulerService);
-        httpMock = TestBed.get(HttpTestingController);
     });
 
-    afterEach(() => {
+    afterEach(inject([HttpTestingController], (httpMock: HttpTestingController) => {
         httpMock.verify();
-    });
+    }));
 
-    it('should be created', () => {
+    it('should be created', inject([EulerService], (service: EulerService) => {
         expect(service).toBeTruthy();
-    });
+    }));
 
     it('should do a POST request to the Euler001 API',
         inject([HttpTestingController, EulerService],
