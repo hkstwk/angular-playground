@@ -30,7 +30,9 @@ import {ChatThreadComponent} from "./chat-thread/chat-thread.component";
 import {ChatMessageComponent} from "./chat-message/chat-message.component";
 import {ChatWindowComponent} from "./chat-window/chat-window.component";
 import {ChatNavBarComponent} from "./chat-nav-bar/chat-nav-bar.component";
-import { IconsComponent } from './icons/icons.component';
+import {IconsComponent} from "./icons/icons.component";
+import { SimpleCalculatorComponent } from './simple-calculator/simple-calculator.component';
+import {SimpleCalculatorService} from "./simple-calculator/simple-calculator.service";
 
 const routes: Routes = [
     {path: '', redirectTo: 'reddit', pathMatch: 'full'},
@@ -40,10 +42,11 @@ const routes: Routes = [
     {path: 'form', component: DemoSkuComponent},
     {path: 'http', component: SimpleHttpComponent},
     {path: 'youtube_search', component: YouTubeSearchComponent},
+    {path: 'calc', component: SimpleCalculatorComponent},
     {path: 'euler', component: EulerComponent},
     {path: 'observables', component: AboutComponent},
     {path: 'chat', component: ChatAppComponent},
-  {path: 'icons', component: IconsComponent}
+  {path: 'icons', component: IconsComponent},
 ];
 
 
@@ -72,16 +75,17 @@ const routes: Routes = [
         ChatMessageComponent,
         ChatWindowComponent,
         ChatNavBarComponent,
-        IconsComponent
+        IconsComponent,
+        SimpleCalculatorComponent
     ],
     imports: [
         BrowserModule,
         RouterModule.forRoot(routes),
         FormsModule,
         HttpClientModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
     ],
-    providers: [EulerService, MessageService, ChatMessagesService, youTubeSearcInjectables],
+    providers: [EulerService, SimpleCalculatorService, MessageService, ChatMessagesService, youTubeSearcInjectables],
     bootstrap: [AppComponent]
 })
 export class AppModule {

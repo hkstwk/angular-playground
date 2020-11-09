@@ -1,0 +1,49 @@
+
+<div class="ui raised segment">
+    <h2 class="ui header">Simple Caluclator</h2>
+    <form #f="ngForm"
+            (ngSubmit)="calculate(f.value)"
+            class="ui form">
+        <div class="field">
+            <label for="leftOperand">First number</label>
+            <input type="number"
+                   id="leftOperand"
+                   placeholder="Enter a number..."
+                   name="leftOperand" ngModel
+                   [(ngModel)]="leftOperand">
+        </div>
+        <div class="field">
+            <label for="rightOperand">Second number</label>
+            <input type="number"
+                   id="rightOperand"
+                   placeholder="Enter a number..."
+                   name="rightOperand" ngModel
+                   [(ngModel)]="rightOperand">
+        </div>
+        <div class="field">
+            <label for="operator">Operator</label>
+            <select
+                id="operator"
+                name="operator" ngModel
+                [(ngModel)]="operator">
+                <option *ngFor="let operator of operators" [value]="operator">{{operator}}</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="calcResult">Result</label>
+            <input type="text"
+                   readonly
+                   id="calcResult"
+                   placeholder="Result will be displayed here ..."
+                   name="calcResult" ngModel
+                   [(ngModel)]="calcResult">
+        </div>
+        <button type="submit" class="ui positive button">Calculate</button>
+        <button class="ui button secondary" type="button" (click)="reset()">Reset</button>
+    </form>
+
+</div>
+<div *ngIf="loading">loading...</div>
+<div *ngIf="data" class="ui message">
+    <pre>{{ data | json }}</pre>
+</div>
