@@ -12,7 +12,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 
 export class SimpleCalculatorComponent implements OnInit {
 
-    operators = ['+', '-', '*', '/'];
+    operators = ['+', '-', '*', '/', '% (not supported; will show error handling'];
 
     public loading: boolean = false;
     public data: any;
@@ -20,13 +20,14 @@ export class SimpleCalculatorComponent implements OnInit {
     public leftOperand: number;
     public rightOperand: number;
     public operator: string;
-    private calcResult: string;
+    public result: string;
 
     constructor(private calcService: SimpleCalculatorService) {
         this.initializeInputs();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     calculate(data: any): void {
         this.loading = true;
@@ -38,7 +39,9 @@ export class SimpleCalculatorComponent implements OnInit {
     }
 
     private handleResp(resp: CalcResponse): void {
-        this.calcResult = resp.calcResult;
+        this.result = resp.result;
+        console.log("responseBody {}", resp);
+        console.log("result set to ", this.result);
         this.data = resp;
     }
 
@@ -53,9 +56,10 @@ export class SimpleCalculatorComponent implements OnInit {
         this.initializeInputs();
     }
 
-    private initializeInputs() {
-        this.leftOperand = 5;
-        this.rightOperand = 2;
-        this.operator = "+";
+    private initializeInputs(){
+        this.leftOperand=6;
+        this.rightOperand=12;
+        this.operator="-";
+        // this.result="";
     }
 }

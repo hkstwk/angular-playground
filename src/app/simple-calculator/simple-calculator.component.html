@@ -1,9 +1,8 @@
-
 <div class="ui raised segment">
     <h2 class="ui header">Simple Caluclator</h2>
     <form #f="ngForm"
-            (ngSubmit)="calculate(f.value)"
-            class="ui form">
+          (ngSubmit)="calculate(f.value)"
+          class="ui form">
         <div class="field">
             <label for="leftOperand">First number</label>
             <input type="number"
@@ -35,8 +34,8 @@
                    readonly
                    id="calcResult"
                    placeholder="Result will be displayed here ..."
-                   name="calcResult" ngModel
-                   [(ngModel)]="calcResult">
+                   name="result" ngModel
+                   [(ngModel)]="result">
         </div>
         <button type="submit" class="ui positive button">Calculate</button>
         <button class="ui button secondary" type="button" (click)="reset()">Reset</button>
