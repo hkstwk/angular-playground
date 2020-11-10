@@ -24,19 +24,30 @@ export class SimpleCalculatorComponent implements OnInit {
     public operator: string;
     public result: string;
 
-    testMultipleCalc: CalcRequest[];
+    public testMultipleCalcRequest: CalcRequest[];
+    public testMultipleCalcResponse: CalcResponse[];
 
     constructor(private calcService: SimpleCalculatorService) {
         this.initializeInputs();
-        this.testMultipleCalc = [new CalcRequest(5, 2, "+"),
-            new CalcRequest(6, 3, "/"),
-            new CalcRequest(29, 6, "*"),
-            new CalcRequest(29, 0, "/"),
-            new CalcRequest(4,8, "-"),
-            new CalcRequest(4,8, "^")
-                ]}
+        // this.testMultipleCalcRequest = [new CalcRequest(5, 2, "+"),
+        //     // new CalcRequest(6, 3, "/"),
+        //     // new CalcRequest(29, 6, "*"),
+        //     // new CalcRequest(29, 0, "/"),
+        //     // new CalcRequest(4,8, "-"),
+        //     new CalcRequest(4, 8, "^")
+        // ];
+    }
+
 
     ngOnInit() {
+    }
+
+    addToRequest(data: CalcRequest) {
+        if (this.testMultipleCalcRequest) {
+            this.testMultipleCalcRequest.push(data);
+        } else {
+            this.testMultipleCalcRequest = [data];
+        }
     }
 
     calculate(data: any): void {
@@ -60,8 +71,8 @@ export class SimpleCalculatorComponent implements OnInit {
         this.data = err;
     }
 
-    calculateMutlpleWrapper(){
-        this.calculateMultiple(this.testMultipleCalc);
+    calculateMutlpleWrapper() {
+        this.calculateMultiple(this.testMultipleCalcRequest);
     }
 
     calculateMultiple(data: any): void {
@@ -75,7 +86,8 @@ export class SimpleCalculatorComponent implements OnInit {
 
     private handleMultiResp(resp: Array<CalcResponse>): void {
         console.log("responseBody {}", resp);
-        this.data = resp;
+        this.testMultipleCalcRequest = null;
+        this.testMultipleCalcResponse = resp;
     }
 
 
@@ -87,12 +99,14 @@ export class SimpleCalculatorComponent implements OnInit {
         this.loading = false;
         this.data = null;
         this.initializeInputs();
+        this.testMultipleCalcResponse = null;
+        this.testMultipleCalcRequest = null;
     }
 
-    private initializeInputs(){
-        this.leftOperand=6;
-        this.rightOperand=12;
-        this.operator="-";
-        this.result="";
+    private initializeInputs() {
+        this.leftOperand = 6;
+        this.rightOperand = 12;
+        this.operator = "-";
+        this.result = "";
     }
 }
