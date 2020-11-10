@@ -3,6 +3,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {CalcResponse} from "./CalcResponse";
 import {SimpleCalculatorService} from "./simple-calculator.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {CalcRequest} from "./CalcRequest";
+import {updateStylingMap} from "@angular/core/src/render3/styling";
 
 @Component({
     selector: 'app-calculator',
@@ -22,9 +24,17 @@ export class SimpleCalculatorComponent implements OnInit {
     public operator: string;
     public result: string;
 
+    testMultipleCalc: CalcRequest[];
+
     constructor(private calcService: SimpleCalculatorService) {
         this.initializeInputs();
-    }
+        this.testMultipleCalc = [new CalcRequest(5, 2, "+"),
+            new CalcRequest(6, 3, "/"),
+            new CalcRequest(29, 6, "*"),
+            new CalcRequest(29, 0, "/"),
+            new CalcRequest(4,8, "-"),
+            new CalcRequest(4,8, "^")
+                ]}
 
     ngOnInit() {
     }
@@ -50,6 +60,29 @@ export class SimpleCalculatorComponent implements OnInit {
         this.data = err;
     }
 
+    calculateMutlpleWrapper(){
+        this.calculateMultiple(this.testMultipleCalc);
+    }
+
+    calculateMultiple(data: any): void {
+        this.loading = true;
+        this.calcService.doMultipleCalculations(data)
+            .subscribe(
+                resp => this.handleMultiResp(resp),
+                error => this.handleMultiError(error))
+        this.loading = false;
+    }
+
+    private handleMultiResp(resp: Array<CalcResponse>): void {
+        console.log("responseBody {}", resp);
+        this.data = resp;
+    }
+
+
+    private handleMultiError(err: HttpErrorResponse): void {
+        console.log("errorBody {}", err);
+    }
+
     reset(): void {
         this.loading = false;
         this.data = null;
@@ -60,6 +93,6 @@ export class SimpleCalculatorComponent implements OnInit {
         this.leftOperand=6;
         this.rightOperand=12;
         this.operator="-";
-        // this.result="";
+        this.result="";
     }
 }
