@@ -16,6 +16,8 @@ export class SimpleCalculatorComponent implements OnInit {
 
     operators = ['+', '-', '*', '/', '% (not supported; will show error handling'];
 
+    public canDoMultipleCalc: boolean = false;
+
     public loading: boolean = false;
     public data: any;
 
@@ -29,13 +31,6 @@ export class SimpleCalculatorComponent implements OnInit {
 
     constructor(private calcService: SimpleCalculatorService) {
         this.initializeInputs();
-        // this.testMultipleCalcRequest = [new CalcRequest(5, 2, "+"),
-        //     // new CalcRequest(6, 3, "/"),
-        //     // new CalcRequest(29, 6, "*"),
-        //     // new CalcRequest(29, 0, "/"),
-        //     // new CalcRequest(4,8, "-"),
-        //     new CalcRequest(4, 8, "^")
-        // ];
     }
 
 
@@ -43,10 +38,12 @@ export class SimpleCalculatorComponent implements OnInit {
     }
 
     addToRequest(data: CalcRequest) {
-        if (this.testMultipleCalcRequest) {
-            this.testMultipleCalcRequest.push(data);
-        } else {
+        if (!this.canDoMultipleCalc) {
             this.testMultipleCalcRequest = [data];
+            this.canDoMultipleCalc = true;
+            this.testMultipleCalcResponse = null;
+        } else {
+            this.testMultipleCalcRequest.push(data);
         }
     }
 
@@ -71,13 +68,9 @@ export class SimpleCalculatorComponent implements OnInit {
         this.data = err;
     }
 
-    calculateMutlpleWrapper() {
-        this.calculateMultiple(this.testMultipleCalcRequest);
-    }
-
-    calculateMultiple(data: any): void {
+    calculateMultiple(): void {
         this.loading = true;
-        this.calcService.doMultipleCalculations(data)
+        this.calcService.doMultipleCalculations(this.testMultipleCalcRequest)
             .subscribe(
                 resp => this.handleMultiResp(resp),
                 error => this.handleMultiError(error))
@@ -87,6 +80,7 @@ export class SimpleCalculatorComponent implements OnInit {
     private handleMultiResp(resp: Array<CalcResponse>): void {
         console.log("responseBody {}", resp);
         this.testMultipleCalcRequest = null;
+        this.canDoMultipleCalc = false;
         this.testMultipleCalcResponse = resp;
     }
 
@@ -101,6 +95,7 @@ export class SimpleCalculatorComponent implements OnInit {
         this.initializeInputs();
         this.testMultipleCalcResponse = null;
         this.testMultipleCalcRequest = null;
+        this.canDoMultipleCalc = false;
     }
 
     private initializeInputs() {
@@ -108,5 +103,18 @@ export class SimpleCalculatorComponent implements OnInit {
         this.rightOperand = 12;
         this.operator = "-";
         this.result = "";
+    }
+
+    public getDummyData(): CalcRequest[] {
+        if (!this.testMultipleCalcRequest){
+            this.testMultipleCalcRequest = [new CalcRequest(5, 2, "+"),
+                new CalcRequest(6, 3, "/"),
+                new CalcRequest(29, 6, "*"),
+                new CalcRequest(29, 0, "/"),
+                new CalcRequest(4, 8, "-"),
+                new CalcRequest(4, 8, "^")
+            ];
+            this.canDoMultipleCalc = true;
+        }
     }
 }
