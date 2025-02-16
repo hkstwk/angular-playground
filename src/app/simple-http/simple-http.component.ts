@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import {FormGroup, FormBuilder} from "@angular/forms";
+import {UntypedFormGroup, UntypedFormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-simple-http',
@@ -10,9 +10,9 @@ import {FormGroup, FormBuilder} from "@angular/forms";
 export class SimpleHttpComponent implements OnInit {
   data: Object;
   loading: boolean = false;
-  myForm: FormGroup;
+  myForm: UntypedFormGroup;
 
-  constructor(private http: HttpClient, fb: FormBuilder) {
+  constructor(private http: HttpClient, fb: UntypedFormBuilder) {
     this.myForm = fb.group({
       // 'url': ['https://jsonplaceholder.typicode.com/posts']
       'url': ['https://api.github.com/repos/hkstwk/euler/contents/Euler/src/nl/hkolvoort/euler/P001_SumOfMultiples.java']

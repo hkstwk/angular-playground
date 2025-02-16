@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl} from '@angular/forms';
 
-function skuValidator(control: FormControl): { [s: string]: boolean} {
+function skuValidator(control: UntypedFormControl): { [s: string]: boolean} {
   if (!control.value.match(/^123/)) {
     return {"invalidSku": true};
   }
@@ -13,10 +13,10 @@ function skuValidator(control: FormControl): { [s: string]: boolean} {
   styleUrls: ['./demo-sku.component.css']
 })
 export class DemoSkuComponent implements OnInit {
-  myForm : FormGroup;
+  myForm : UntypedFormGroup;
   skuString: string = '124..';
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: UntypedFormBuilder) {
     this.myForm = fb.group({
       'sku': ['', Validators.compose([
         Validators.required, skuValidator])]
