@@ -1,11 +1,10 @@
-import {Component, OnInit} from "@angular/core";
-import {Observable} from "rxjs";
-import {ThreadsService} from "../service/threads.service";
-import {ChatExampleData, initialMessages} from "../data/chat-example-data";
-import {ChatMessagesService} from "../service/chat-messages.service";
-import {UsersService} from "../service/users.service";
-import {ChatMessage} from "../model/chat-message.model";
-import {Thread} from "../model/thread.model";
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ThreadsService} from '../service/threads.service';
+import {ChatExampleData} from '../data/chat-example-data';
+import {ChatMessagesService} from '../service/chat-messages.service';
+import {UsersService} from '../service/users.service';
+import {ChatMessage} from '../model/chat-message.model';
 
 @Component({
     selector: 'chat-threads',
