@@ -14,11 +14,11 @@ import {publishReplay, refCount} from "rxjs/internal/operators";
 })
 export class AboutComponent implements OnInit {
 
-    @ViewChild('btn') btn;
-    @ViewChild('refreshButton') refreshButton;
-    @ViewChild('closeButton1') closeButton1;
-    @ViewChild('closeButton2') closeButton2;
-    @ViewChild('closeButton3') closeButton3;
+    @ViewChild('btn', { static: true }) btn;
+    @ViewChild('refreshButton', { static: true }) refreshButton;
+    @ViewChild('closeButton1', { static: true }) closeButton1;
+    @ViewChild('closeButton2', { static: true }) closeButton2;
+    @ViewChild('closeButton3', { static: true }) closeButton3;
 
     doubleClickMessage: string;
     noDoubleClickMessage: string;
