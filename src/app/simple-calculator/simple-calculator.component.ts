@@ -1,10 +1,8 @@
-import {Component, OnInit, Output} from '@angular/core';
-import { HttpErrorResponse } from "@angular/common/http";
-import {CalcResponse} from "./CalcResponse";
-import {SimpleCalculatorService} from "./simple-calculator.service";
-import {FormControl, FormGroup} from "@angular/forms";
-import {CalcRequest} from "./CalcRequest";
-import {updateStylingMap} from "@angular/core/src/render3/styling";
+import {Component, OnInit} from '@angular/core';
+import {HttpErrorResponse} from '@angular/common/http';
+import {CalcResponse} from './CalcResponse';
+import {SimpleCalculatorService} from './simple-calculator.service';
+import {CalcRequest} from './CalcRequest';
 
 @Component({
     selector: 'app-calculator',
@@ -106,7 +104,7 @@ export class SimpleCalculatorComponent implements OnInit {
         this.result = "";
     }
 
-    public getDummyData(): CalcRequest[] {
+    public getDummyData(): void {
         if (!this.testMultipleCalcRequest){
             this.testMultipleCalcRequest = [new CalcRequest(5, 2, "+"),
                 new CalcRequest(6, 3, "/"),
