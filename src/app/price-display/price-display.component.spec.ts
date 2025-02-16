@@ -1,8 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { PriceDisplayComponent } from './price-display.component';
-import { Product } from "../model/product.model";
-import { Component } from "@angular/core";
+import {PriceDisplayComponent} from './price-display.component';
+import {Component} from '@angular/core';
 
 describe('PriceDisplayComponent', () => {
   let testHostComponent: TestHostComponent;
@@ -19,9 +18,9 @@ describe('PriceDisplayComponent', () => {
     setPrice(_price: number) {
       this.price = _price;
     }
-  };
+  }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PriceDisplayComponent, TestHostComponent ]
     })

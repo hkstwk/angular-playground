@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {UntypedFormBuilder, UntypedFormGroup, Validators, UntypedFormControl} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 
-function skuValidator(control: UntypedFormControl): { [s: string]: boolean} {
-  if (!control.value.match(/^123/)) {
-    return {"invalidSku": true};
-  }
+function skuValidator(control: UntypedFormControl): { [s: string]: boolean } {
+    if (!control.value.match(/^123/)) {
+        return {'invalidSku': true};
+    }
 }
 
 @Component({
@@ -14,39 +14,46 @@ function skuValidator(control: UntypedFormControl): { [s: string]: boolean} {
     standalone: false
 })
 export class DemoSkuComponent implements OnInit {
-  myForm : UntypedFormGroup;
-  skuString: string = '124..';
+    myForm: UntypedFormGroup;
+    skuString: string = '124..';
 
-  constructor(fb: UntypedFormBuilder) {
-    this.myForm = fb.group({
-      'sku': ['', Validators.compose([
-        Validators.required, skuValidator])]
-    });
+    constructor(fb: UntypedFormBuilder) {
+        this.myForm = fb.group({
+            'sku': ['', Validators.compose([
+                Validators.required, skuValidator])]
+        });
 
-    this.myForm.controls['sku'].valueChanges.subscribe(
-      (value: string) => {
-        console.log('sku changed to: ', value);
-      }
-    );
+        this.myForm.controls['sku'].valueChanges.subscribe(
+            (value: string) => {
+                console.log('sku changed to: ', value);
+            }
+        );
 
-    this.myForm.valueChanges.subscribe(
-      (form: any) => {
-        console.log('form changed to: ', form)
-      }
-    )
-  }
+        this.myForm.valueChanges.subscribe(
+            (form: any) => {
+                console.log('form changed to: ', form);
+            }
+        );
+    }
 
-  ngOnInit() {
-  }
+    get urlControl(): FormControl {
+        return this.myForm.get('sku') as FormControl;
+    }
 
-  onSubmit(form: any): void {
-    console.log(' you submitted value: ', form);
-  }
+    get classError(): boolean {
+        return !this.myForm.controls['sku'].valid && this.myForm.controls['sku'].touched
+    }
 
-  onSubmitReactive(value: string): void {
-    console.log(' you submitted value: ', value);
-  }
+    ngOnInit() {
+    }
 
+    onSubmit(form: any): void {
+        console.log(' you submitted value: ', form);
+    }
+
+    onSubmitReactive(value: string): void {
+        console.log(' you submitted value: ', value);
+    }
 
 
 }

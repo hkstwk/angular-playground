@@ -1,7 +1,7 @@
 <div class="ui raised segment">
   <h2 class="ui header">Observables</h2>
   <button type="button" class="ui icon positive button" (click)="add()"><i class="plus icon"></i></button>
-  <button type="button" class="ui icon negative button" (click)="substract()"><i class="minus icon"></i></button>
+  <button type="button" class="ui icon negative button" (click)="subtract()"><i class="minus icon"></i></button>
   <button type="button" class="ui primary button" #btn>Double click or not...</button>
   <button type="button" class="ui secondary button" (click)="clear()">Clear</button>
   <button type="button" class="ui inverted green button" #refreshButton>Refresh users..</button>
@@ -20,14 +20,14 @@
     <thead>
     <tr>
       <th colspan="5">
-        <img class="ui avatar image" src="../../assets/images/GitHub-Mark-32px.png" /><span>Who to follow...</span>
+        <img class="ui avatar image" ngSrc="../../assets/images/GitHub-Mark-32px.png" height="32" width="32" alt="abc"/><span>Who to follow...</span>
       </th>
     </tr>
     </thead>
     <tbody>
       <tr>
         <div *ngIf="userSuggestion1">
-          <td><img class="ui avatar image" src={{userSuggestion1.avatar_url}}/></td>
+          <td><img class="ui avatar image" ngSrc="{{userSuggestion1.avatar_url}}/" alt="def" fill="none"></td>
           <td>{{ userSuggestion1.login}}</td>
           <td>{{ userSuggestion1.id}}</td>
           <td><a href="{{ userSuggestion1.html_url}}" target="_blank">{{ userSuggestion1.html_url}}</a></td>
@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <div *ngIf="userSuggestion2">
-          <td><img class="ui avatar image" src={{userSuggestion2.avatar_url}}/></td>
+          <td><img class="ui avatar image" ngSrc="{{userSuggestion2.avatar_url}}/" alt="ghi" fill="none"></td>
           <td>{{ userSuggestion2.login}}</td>
           <td>{{ userSuggestion2.id}}</td>
           <td><a href="{{ userSuggestion2.html_url}}" target="_blank">{{ userSuggestion2.html_url}}</a></td>
@@ -45,7 +45,7 @@
       </tr>
       <tr>
         <div *ngIf="userSuggestion3">
-          <td><img class="ui avatar image" src={{userSuggestion3.avatar_url}}/></td>
+          <td><img class="ui avatar image" ngSrc="{{userSuggestion3.avatar_url}}/" alt="jkl" fill="none"></td>
           <td>{{ userSuggestion3.login}}</td>
           <td>{{ userSuggestion3.id}}</td>
           <td><a href="{{ userSuggestion3.html_url}}" target="_blank">{{ userSuggestion3.html_url}}</a></td>

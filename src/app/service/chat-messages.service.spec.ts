@@ -1,8 +1,8 @@
-import {ChatMessagesService} from "./chat-messages.service";
-import {User} from "../model/user.model";
-import {Thread} from "../model/thread.model";
-import {ChatMessage} from "../model/chat-message.model";
-import {TestBed, async} from "@angular/core/testing";
+import {ChatMessagesService} from './chat-messages.service';
+import {User} from '../model/user.model';
+import {Thread} from '../model/thread.model';
+import {ChatMessage} from '../model/chat-message.model';
+import {TestBed, waitForAsync} from '@angular/core/testing';
 
 export const user1: User = new User('User1', '');
 export const user2: User = new User('User2', '');
@@ -49,7 +49,7 @@ describe('ChatMessagesService', () => {
 
   let service: ChatMessagesService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       providers: [
         ChatMessagesService
@@ -117,7 +117,7 @@ describe('ChatMessagesService', () => {
         chatMessage = _chatMessage;
       });
 
-    // message 1 comes from from user2, should display '=> 1'
+    // message 1 comes from user2, should display '=> 1'
     service.addMessage(m1);
     expect(chatMessage.text).toContain('=> 1');
 
@@ -125,18 +125,18 @@ describe('ChatMessagesService', () => {
     service.addMessage(m2);
     expect(chatMessage.text).not.toContain('=> 2');
 
-    // message 3 comes from from user2 again , should display '=>3'
+    // message 3 comes from user2 again , should display '=>3'
     service.addMessage(m3);
     expect(chatMessage.text).toContain('=> 3');
 
-    // message 4 and 5 come from from user1 again , should not display '=> 4' and '=> 5'
+    // message 4 and 5 come from user1 again , should not display '=> 4' and '=> 5'
     // because these messages were not pushed to this stream.
     service.addMessage(m4);
     expect(chatMessage.text).not.toContain('=> 4');
     service.addMessage(m5);
     expect(chatMessage.text).not.toContain('=> 5');
 
-    // message 6 comes from from user2 again , should display '=> 6'
+    // message 6 comes from user2 again , should display '=> 6'
     service.addMessage(m6);
     expect(chatMessage.text).toContain('=> 6');
   });

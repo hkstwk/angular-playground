@@ -1,10 +1,10 @@
-import {Injectable} from "@angular/core";
-import {Observable, Subject, BehaviorSubject, combineLatest} from "rxjs";
-import {Thread} from "../model/thread.model";
-import {ChatMessagesService} from "./chat-messages.service";
-import {ChatMessage} from "../model/chat-message.model";
-import {map} from "rxjs/internal/operators";
-import * as _ from "lodash";
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
+import {Thread} from '../model/thread.model';
+import {ChatMessagesService} from './chat-messages.service';
+import {ChatMessage} from '../model/chat-message.model';
+import {map} from 'rxjs/internal/operators';
+import * as _ from 'lodash';
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import * as _ from "lodash";
 })
 export class ThreadsService {
 
-    // `threads` is a observable that contains the most up to date list of threads
+    // `threads` is an observable that contains the most up-to-date list of threads
     threads: Observable<{[key: string]: Thread}>;
 
     // `orderedThreads` contains a newest-chatMessage-first chronological list of threads

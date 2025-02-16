@@ -33,6 +33,7 @@ import {ChatNavBarComponent} from './chat-nav-bar/chat-nav-bar.component';
 import {IconsComponent} from './icons/icons.component';
 import {SimpleCalculatorComponent} from './simple-calculator/simple-calculator.component';
 import {SimpleCalculatorService} from './simple-calculator/simple-calculator.service';
+import {NgOptimizedImage} from '@angular/common';
 
 const routes: Routes = [
     {path: '', redirectTo: 'reddit', pathMatch: 'full'},
@@ -81,7 +82,9 @@ const routes: Routes = [
     imports: [
         BrowserModule,
         RouterModule.forRoot(routes),
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgOptimizedImage,
+        FormsModule
     ],
     providers: [EulerService, SimpleCalculatorService, MessageService, ChatMessagesService, youTubeSearcInjectables, provideHttpClient(withInterceptorsFromDi())]
 })

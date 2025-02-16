@@ -21,13 +21,3 @@ h3.panel-title {
   -moz-box-shadow: 0 10px 6px -6px #777;
   box-shadow: 0 5px 6px -6px #777;
 }
-
-div.chat-window-container {
-position: relative;
-bottom: 0;
-right: 100px;
-width: 300px;
-height: 300px;
-overflow-y: auto;
-border: 3px solid #73AD21;
-}

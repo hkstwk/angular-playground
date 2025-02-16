@@ -1,5 +1,5 @@
 <div class="ui tiny circular image" *ngIf="!incoming">
-  <img src="{{message.author.avatarSrc}}">
+  <img ngSrc="{{message.author.avatarSrc}}" alt="" fill="none">
 </div>
 
 <div class="content">
@@ -12,5 +12,5 @@
 </div>
 
 <div class="ui tiny circular image" *ngIf="incoming">
-  <img src="{{message.author.avatarSrc}}">
+  <img ngSrc="{{message.author.avatarSrc}}" alt="" fill="none">
 </div>

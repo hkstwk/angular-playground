@@ -19,15 +19,15 @@
   <form [formGroup]="myForm"
         (ngSubmit)="onSubmitReactive(myForm.value)"
         class="ui form"
-         [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
+         [class.error]="classError">
     <div class="field"
-         [class.error]="!myForm.controls['sku'].valid && myForm.controls['sku'].touched">
+         [class.error]="classError">
       <label for="skuInputReactive">SKU</label>
       <input type="text"
              id="skuInputReactive"
              name="sku"
              placeholder="#sku"
-             [formControl]="myForm.controls['sku']"
+             [formControl]="urlControl"
              [(ngModel)]="skuString"
       >
     </div>

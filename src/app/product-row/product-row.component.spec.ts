@@ -1,11 +1,11 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {ProductRowComponent} from './product-row.component';
-import {Component} from "@angular/core";
-import {Product} from "../model/product.model";
-import {ProductDepartmentComponent} from "../product-department/product-department.component";
-import {ProductImageComponent} from "../product-image/product-image.component";
-import {PriceDisplayComponent} from "../price-display/price-display.component";
+import {Component} from '@angular/core';
+import {Product} from '../model/product.model';
+import {ProductDepartmentComponent} from '../product-department/product-department.component';
+import {ProductImageComponent} from '../product-image/product-image.component';
+import {PriceDisplayComponent} from '../price-display/price-display.component';
 
 describe('ProductRowComponent', () => {
     let testHostComponent: TestHostComponent;
@@ -14,7 +14,7 @@ describe('ProductRowComponent', () => {
 
     @Component({
     selector: `host-component`,
-    template: `<product-row 
+    template: `<product-row
       [product]="product"
       (click)='clicked(product)'
       >
@@ -28,9 +28,8 @@ describe('ProductRowComponent', () => {
             this.product = _product;
         }
     }
-    ;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [
                 ProductRowComponent,

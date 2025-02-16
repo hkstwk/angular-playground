@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { ProductImageComponent } from './product-image.component';
-import { Product } from "../model/product.model";
-import { Component } from "@angular/core";
+import {ProductImageComponent} from './product-image.component';
+import {Product} from '../model/product.model';
+import {Component} from '@angular/core';
 
 describe('ProductImageComponent', () => {
   let testHostComponent: TestHostComponent;
@@ -20,9 +20,9 @@ describe('ProductImageComponent', () => {
     setProduct(_product: Product) {
       this.product = _product;
     }
-  };
+  }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductImageComponent, TestHostComponent ]
     })

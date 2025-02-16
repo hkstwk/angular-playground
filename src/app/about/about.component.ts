@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {MessageService} from "./message.service";
-import {Message} from "../model/message.model";
-import {Subscription, fromEvent, merge, combineLatest} from "rxjs";
-import {map, mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
-import { HttpClient } from "@angular/common/http";
-import {GithubUser} from "../model/github-user.model";
-import {publishReplay, refCount} from "rxjs/internal/operators";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MessageService} from './message.service';
+import {Message} from '../model/message.model';
+import {combineLatest, fromEvent, merge, Subscription} from 'rxjs';
+import {buffer, debounceTime, filter, map, mergeMap, startWith} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {GithubUser} from '../model/github-user.model';
+import {publishReplay, refCount} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-about',
@@ -72,7 +72,7 @@ export class AboutComponent implements OnInit {
             }));
 
         /** response stream, using URL returned by the request stream to
-         * call Github API. mergeMap is used to flatten out the JSON that
+         * call GitHub API. mergeMap is used to flatten out the JSON that
          * is returned by HttpClient in yet another Observable.
          */
         const response$ = request$.pipe(
@@ -207,7 +207,7 @@ export class AboutComponent implements OnInit {
         this.messageService.setCurrentMessage(new Message(this.index));
     };
 
-    substract() {
+    subtract() {
         this.index -= 1;
         this.messageService.setCurrentMessage(new Message(this.index));
     };
