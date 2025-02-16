@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import {UntypedFormGroup, UntypedFormBuilder} from "@angular/forms";
+import {HttpClient} from '@angular/common/http';
+import {FormControl, FormGroup, UntypedFormBuilder} from '@angular/forms';
 
 @Component({
     selector: 'app-simple-http',
@@ -9,39 +9,46 @@ import {UntypedFormGroup, UntypedFormBuilder} from "@angular/forms";
     standalone: false
 })
 export class SimpleHttpComponent implements OnInit {
-  data: Object;
-  loading: boolean = false;
-  myForm: UntypedFormGroup;
+    data: Object;
+    loading: boolean = false;
+    myForm: FormGroup;
 
-  constructor(private http: HttpClient, fb: UntypedFormBuilder) {
-    this.myForm = fb.group({
-      // 'url': ['https://jsonplaceholder.typicode.com/posts']
-      'url': ['https://api.github.com/repos/hkstwk/euler/contents/Euler/src/nl/hkolvoort/euler/P001_SumOfMultiples.java']
-    });
-  }
+    constructor(private http: HttpClient, fb: UntypedFormBuilder) {
 
-  ngOnInit() {
-  }
+        this.myForm = new FormGroup({
+            url: new FormControl('https://api.github.com/repos/hkstwk/euler/contents/Euler/src/nl/hkolvoort/euler/P001_SumOfMultiples.java')
+        });
+    }
 
-  makeRequest(url: string): void {
-    if (this.data) this.data = null;
-    this.loading = true;
-    this.http
-      .get(url)
-      .subscribe(
-        (data: any) => {
-        this.data = data;
+    ngOnInit() {
+    }
+
+    get urlControl(): FormControl {
+        return this.myForm.get('url') as FormControl;
+    }
+
+    makeRequest(url: string): void {
+        if (this.data) {
+            this.data = null;
+        }
+        this.loading = true;
+        this.http
+            .get(url)
+            .subscribe(
+                (data: any) => {
+                    this.data = atob(data.content);
+                    this.loading = false;
+                },
+                (err: any) => {
+                    this.data = err;
+                    this.loading = false;
+                });
+    }
+
+    reset(): void {
         this.loading = false;
-      },
-      (err: any) => {
-        this.data = err;
-        this.loading = false;
-      });
-  }
+        this.data = null;
+    }
 
-  reset(): void {
-    this.loading = false;
-    this.data = null;
-  }
-
+    protected readonly FormControl = FormControl;
 }

@@ -25,7 +25,7 @@ h3.panel-title {
 div.chat-window-container {
 position: relative;
 bottom: 0;
-right: 100;
+right: 100px;
 width: 300px;
 height: 300px;
 overflow-y: auto;

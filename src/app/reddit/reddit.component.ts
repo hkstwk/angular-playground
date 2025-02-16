@@ -12,8 +12,8 @@ export class RedditComponent {
 
   constructor() {
     this.articles = [
-      new Article('Angular','http://angular.io',10),
-      new Article('Fullstack','http://fullstack.io',15),
+      new Article('Angular','https://angular.io',10),
+      new Article('Fullstack','https://fullstack.io',15),
       new Article('Project Euler','https://projecteuler.net',20),
       new Article('Angular Homepage','http://angular.io')
     ]

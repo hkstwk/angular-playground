@@ -108,7 +108,7 @@ ul.ui.list li:before {
 }
 
 cf {
-  *zoom: 1;
+  zoom: 1;
 }
 
 .angular-playground-container{
