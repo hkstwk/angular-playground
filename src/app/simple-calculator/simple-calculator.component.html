@@ -38,7 +38,7 @@
                    [(ngModel)]="result">
         </div>
         <button type="submit" class="ui positive button">Calculate (single)</button>
-        <button class="ui yellow button" type="button" (click)="calculateMultiple()" [(disabled)]="!canDoMultipleCalc">Calculate (multiple)</button>
+        <button class="ui yellow button" type="button" (click)="calculateMultiple()" [disabled]="!canDoMultipleCalc" (disabledChange)="canDoMultipleCalc = $event">Calculate (multiple)</button>
         <button class="ui orange button" type="button" (click)="getDummyData()" [(disabled)]="canDoMultipleCalc">Get dummy data</button>
         <button class="ui red button" type="button" (click)="addToRequest(f.value)">Add request to list</button>
         <button class="ui button secondary" type="button" (click)="reset()">Reset</button>
