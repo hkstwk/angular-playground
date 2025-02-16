@@ -10,8 +10,9 @@ describe('ArticleComponent', () => {
 
   @Component({
     selector: `host-component`,
-    template: `<app-article [article]="article"></app-article>`
-  })
+    template: `<app-article [article]="article"></app-article>`,
+    standalone: false
+})
   class TestHostComponent {
     article = new Article('Project Euler','https://projecteuler.net',395);
   }

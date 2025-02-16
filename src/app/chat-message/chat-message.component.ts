@@ -5,9 +5,10 @@ import {UsersService} from "../service/users.service";
 import * as moment from 'moment';
 
 @Component({
-  selector: 'chat-message',
-  templateUrl: './chat-message.component.html',
-  styleUrls: ['./chat-message.component.css']
+    selector: 'chat-message',
+    templateUrl: './chat-message.component.html',
+    styleUrls: ['./chat-message.component.css'],
+    standalone: false
 })
 export class ChatMessageComponent implements OnInit {
   @Input() message: ChatMessage;

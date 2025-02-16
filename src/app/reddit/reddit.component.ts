@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import {Article} from "./../article/article.model";
 
 @Component({
-  selector: 'app-reddit',
-  templateUrl: 'reddit.component.html',
-  styleUrls: ['reddit.component.css']
+    selector: 'app-reddit',
+    templateUrl: 'reddit.component.html',
+    styleUrls: ['reddit.component.css'],
+    standalone: false
 })
 export class RedditComponent {
   articles: Article[];

@@ -11,8 +11,9 @@ describe('ProductDepartmentComponent', () => {
 
   @Component({
     selector: `host-component`,
-    template: `<product-department [product]="product"></product-department>`
-  })
+    template: `<product-department [product]="product"></product-department>`,
+    standalone: false
+})
   class TestHostComponent {
     product: Product;
 

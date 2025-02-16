@@ -13,13 +13,14 @@ describe('ProductRowComponent', () => {
     const host: string = "http://localhost:9876";
 
     @Component({
-        selector: `host-component`,
-        template: `<product-row 
+    selector: `host-component`,
+    template: `<product-row 
       [product]="product"
       (click)='clicked(product)'
       >
-</product-row>`
-    })
+</product-row>`,
+    standalone: false
+})
     class TestHostComponent {
         product: Product;
 

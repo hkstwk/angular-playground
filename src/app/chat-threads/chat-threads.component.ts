@@ -8,9 +8,10 @@ import {ChatMessage} from "../model/chat-message.model";
 import {Thread} from "../model/thread.model";
 
 @Component({
-  selector: 'chat-threads',
-  templateUrl: './chat-threads.component.html',
-  styleUrls: ['./chat-threads.component.css']
+    selector: 'chat-threads',
+    templateUrl: './chat-threads.component.html',
+    styleUrls: ['./chat-threads.component.css'],
+    standalone: false
 })
 export class ChatThreadsComponent implements OnInit {
   threads: Observable<any>;

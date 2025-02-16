@@ -9,7 +9,8 @@ import {updateStylingMap} from "@angular/core/src/render3/styling";
 @Component({
     selector: 'app-calculator',
     templateUrl: './simple-calculator.component.html',
-    styleUrls: ['./simple-calculator.component.css']
+    styleUrls: ['./simple-calculator.component.css'],
+    standalone: false
 })
 
 export class SimpleCalculatorComponent implements OnInit {

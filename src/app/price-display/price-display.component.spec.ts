@@ -10,8 +10,9 @@ describe('PriceDisplayComponent', () => {
 
   @Component({
     selector: `host-component`,
-    template: `<price-display [price]="price"></price-display>`
-  })
+    template: `<price-display [price]="price"></price-display>`,
+    standalone: false
+})
   class TestHostComponent {
     price: number;
 

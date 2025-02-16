@@ -3,9 +3,10 @@ import {Thread} from "../model/thread.model";
 import {ThreadsService} from "../service/threads.service";
 
 @Component({
-  selector: 'chat-thread',
-  templateUrl: './chat-thread.component.html',
-  styleUrls: ['./chat-thread.component.css']
+    selector: 'chat-thread',
+    templateUrl: './chat-thread.component.html',
+    styleUrls: ['./chat-thread.component.css'],
+    standalone: false
 })
 export class ChatThreadComponent implements OnInit {
   @Input() thread: Thread;

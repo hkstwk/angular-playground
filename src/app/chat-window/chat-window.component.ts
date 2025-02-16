@@ -11,7 +11,8 @@ import {UsersService} from "../service/users.service";
     selector: 'chat-window',
     templateUrl: './chat-window.component.html',
     styleUrls: ['./chat-window.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ChatWindowComponent implements OnInit {
     messages: Observable<any>;

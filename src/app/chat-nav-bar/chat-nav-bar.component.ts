@@ -9,7 +9,8 @@ import {Thread} from "../model/thread.model";
 @Component({
     selector: 'chat-nav-bar',
     templateUrl: './chat-nav-bar.component.html',
-    styleUrls: ['./chat-nav-bar.component.css']
+    styleUrls: ['./chat-nav-bar.component.css'],
+    standalone: false
 })
 export class ChatNavBarComponent implements OnInit {
     unreadMessagesCount: number;

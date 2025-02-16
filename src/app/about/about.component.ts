@@ -10,7 +10,8 @@ import {publishReplay, refCount} from "rxjs/internal/operators";
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
-    styleUrls: ['./about.component.css']
+    styleUrls: ['./about.component.css'],
+    standalone: false
 })
 export class AboutComponent implements OnInit {
 

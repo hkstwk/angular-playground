@@ -4,9 +4,10 @@ import {Euler001Response} from "./euler001response";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-euler',
-  templateUrl: './euler.component.html',
-  styleUrls: ['./euler.component.css']
+    selector: 'app-euler',
+    templateUrl: './euler.component.html',
+    styleUrls: ['./euler.component.css'],
+    standalone: false
 })
 
 export class EulerComponent implements OnInit {

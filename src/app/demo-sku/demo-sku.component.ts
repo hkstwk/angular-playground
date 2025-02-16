@@ -8,9 +8,10 @@ function skuValidator(control: UntypedFormControl): { [s: string]: boolean} {
 }
 
 @Component({
-  selector: 'app-demo-sku',
-  templateUrl: './demo-sku.component.html',
-  styleUrls: ['./demo-sku.component.css']
+    selector: 'app-demo-sku',
+    templateUrl: './demo-sku.component.html',
+    styleUrls: ['./demo-sku.component.css'],
+    standalone: false
 })
 export class DemoSkuComponent implements OnInit {
   myForm : UntypedFormGroup;
