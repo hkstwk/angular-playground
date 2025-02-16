@@ -1,11 +1,11 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {ChatNavBarComponent} from "./chat-nav-bar.component";
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ChatNavBarComponent} from './chat-nav-bar.component';
 
 describe('ChatNavBarComponent', () => {
     let component: ChatNavBarComponent;
     let fixture: ComponentFixture<ChatNavBarComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [ChatNavBarComponent]
         })

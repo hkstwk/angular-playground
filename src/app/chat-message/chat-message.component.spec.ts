@@ -1,15 +1,15 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {ChatMessageComponent} from "./chat-message.component";
-import {ChatMessagesService, messagesServiceInjectables} from "../service/chat-messages.service";
-import {ThreadsService, threadsServiceInjectables} from "../service/threads.service";
-import {UsersService} from "../service/users.service";
-import {m2, felipe} from "../model/chat-message.data";
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ChatMessageComponent} from './chat-message.component';
+import {ChatMessagesService, messagesServiceInjectables} from '../service/chat-messages.service';
+import {ThreadsService, threadsServiceInjectables} from '../service/threads.service';
+import {UsersService} from '../service/users.service';
+import {felipe, m2} from '../model/chat-message.data';
 
 describe('ChatMessageComponent', () => {
   let component: ChatMessageComponent;
   let fixture: ComponentFixture<ChatMessageComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         ChatMessageComponent,

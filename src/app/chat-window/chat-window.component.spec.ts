@@ -1,16 +1,16 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {ChatWindowComponent} from "./chat-window.component";
-import {ChatMessageComponent} from "../chat-message/chat-message.component";
-import {messagesServiceInjectables, ChatMessagesService} from "../service/chat-messages.service";
-import {threadsServiceInjectables, ThreadsService} from "../service/threads.service";
-import {UsersService} from "../service/users.service";
-import {FormsModule} from "@angular/forms";
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ChatWindowComponent} from './chat-window.component';
+import {ChatMessageComponent} from '../chat-message/chat-message.component';
+import {ChatMessagesService, messagesServiceInjectables} from '../service/chat-messages.service';
+import {ThreadsService, threadsServiceInjectables} from '../service/threads.service';
+import {UsersService} from '../service/users.service';
+import {FormsModule} from '@angular/forms';
 
 describe('ChatWindowComponent', () => {
     let component: ChatWindowComponent;
     let fixture: ComponentFixture<ChatWindowComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [
                 ChatWindowComponent,

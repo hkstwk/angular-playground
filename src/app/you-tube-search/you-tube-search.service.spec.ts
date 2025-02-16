@@ -1,15 +1,15 @@
-import {TestBed, async} from "@angular/core/testing";
-import {YouTubeSearchService} from "./you-tube-search.service";
-import { HttpClient, HttpHandler } from "@angular/common/http";
-import {youTubeSearcInjectables} from "./you-tube-search.injectables";
-import {of, Observable} from "rxjs";
-import {SearchResult} from "../model/search-result.model";
+import {TestBed, waitForAsync} from '@angular/core/testing';
+import {YouTubeSearchService} from './you-tube-search.service';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+import {youTubeSearcInjectables} from './you-tube-search.injectables';
+import {of} from 'rxjs';
+import {SearchResult} from '../model/search-result.model';
 
 describe('YouTubeSearchService', () => {
 
     let service: YouTubeSearchService;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             providers: [
                 YouTubeSearchService,

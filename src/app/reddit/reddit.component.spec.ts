@@ -1,10 +1,10 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RedditComponent } from './reddit.component';
-import {RouterTestingModule} from "@angular/router/testing";
-import {ArticleComponent} from "../article/article.component";
+import {TestBed, waitForAsync} from '@angular/core/testing';
+import {RedditComponent} from './reddit.component';
+import {RouterTestingModule} from '@angular/router/testing';
+import {ArticleComponent} from '../article/article.component';
 
 describe('RedditComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         RedditComponent,

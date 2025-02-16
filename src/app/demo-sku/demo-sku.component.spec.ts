@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
-import { DemoSkuComponent } from './demo-sku.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DemoSkuComponent} from './demo-sku.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('DemoSkuComponent', () => {
   let component: DemoSkuComponent;
   let fixture: ComponentFixture<DemoSkuComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DemoSkuComponent ],
       imports: [ FormsModule, ReactiveFormsModule ]

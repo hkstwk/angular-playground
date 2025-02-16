@@ -1,9 +1,9 @@
-import {TestBed, async} from "@angular/core/testing";
-import {ThreadsService} from "./threads.service";
-import {Thread} from "../model/thread.model";
-import {ChatMessagesService} from "./chat-messages.service";
-import * as _ from "lodash";
-import {m6, m1, m2, m3, m4, m5, t2} from "../model/chat-message.data";
+import {TestBed, waitForAsync} from '@angular/core/testing';
+import {ThreadsService} from './threads.service';
+import {Thread} from '../model/thread.model';
+import {ChatMessagesService} from './chat-messages.service';
+import * as _ from 'lodash';
+import {m1, m2, m3, m4, m5, m6, t2} from '../model/chat-message.data';
 
 describe('ThreadsService', () => {
 
@@ -14,7 +14,7 @@ describe('ThreadsService', () => {
     let orderedThreads: Thread[];
     let threadNames: string;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             providers: [
                 ThreadsService

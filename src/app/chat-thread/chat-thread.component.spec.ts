@@ -1,11 +1,11 @@
-import {async, ComponentFixture, TestBed} from "@angular/core/testing";
-import {ChatThreadComponent} from "./chat-thread.component";
-import {Thread} from "../model/thread.model";
-import {ThreadsService} from "../service/threads.service";
-import {ChatMessage} from "../model/chat-message.model";
-import {User} from "../model/user.model";
-import {DebugElement, ElementRef} from "@angular/core";
-import {By} from "@angular/platform-browser";
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ChatThreadComponent} from './chat-thread.component';
+import {Thread} from '../model/thread.model';
+import {ThreadsService} from '../service/threads.service';
+import {ChatMessage} from '../model/chat-message.model';
+import {User} from '../model/user.model';
+import {DebugElement, ElementRef} from '@angular/core';
+import {By} from '@angular/platform-browser';
 
 describe('ChatThreadComponent', () => {
     let component: ChatThreadComponent;
@@ -35,7 +35,7 @@ describe('ChatThreadComponent', () => {
     })
 
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [
                 ChatThreadComponent
