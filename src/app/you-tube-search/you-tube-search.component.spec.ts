@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {YouTubeSearchComponent} from "./you-tube-search.component";
-import {HttpHandler, HttpClient} from "@angular/common/http";
+import { HttpHandler, HttpClient } from "@angular/common/http";
 import {YouTubeSearchService} from "./you-tube-search.service";
 import {SearchBoxComponent} from "../search-box/search-box.component";
 import {SearchResultComponent} from "../search-result/search-result.component";

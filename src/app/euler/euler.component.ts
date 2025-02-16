@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EulerService} from "./euler.service";
 import {Euler001Response} from "./euler001response";
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: 'app-euler',

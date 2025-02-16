@@ -3,7 +3,7 @@ import {MessageService} from "./message.service";
 import {Message} from "../model/message.model";
 import {Subscription, fromEvent, merge, combineLatest} from "rxjs";
 import {map, mergeMap, debounceTime, buffer, filter, startWith} from "rxjs/operators";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {GithubUser} from "../model/github-user.model";
 import {publishReplay, refCount} from "rxjs/internal/operators";
 

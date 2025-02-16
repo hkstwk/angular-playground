@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 // rxjs
 import {Observable} from "rxjs";
 import {Euler001Request} from "./euler001request";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {Euler001Response} from "./euler001response";
 
 

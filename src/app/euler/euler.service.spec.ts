@@ -1,18 +1,19 @@
 import {TestBed, inject} from "@angular/core/testing";
 import {EulerService} from "./euler.service";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
+import { HttpTestingController, provideHttpClientTesting } from "@angular/common/http/testing";
 import {Euler001Response} from "./euler001response";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 
 describe('EulerService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                EulerService
-            ],
-            imports: [
-                HttpClientTestingModule
-            ],
-        });
+    imports: [],
+    providers: [
+        EulerService,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     });
 
     afterEach(inject([HttpTestingController], (httpMock: HttpTestingController) => {

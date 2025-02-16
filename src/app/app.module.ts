@@ -15,7 +15,7 @@ import {ProductDepartmentComponent} from "./product-department/product-departmen
 import {DirectivesComponent} from "./directives/directives.component";
 import {DemoSkuComponent} from "./demo-sku/demo-sku.component";
 import {SimpleHttpComponent} from "./simple-http/simple-http.component";
-import {HttpClientModule} from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import {YouTubeSearchComponent} from "./you-tube-search/you-tube-search.component";
 import {youTubeSearcInjectables} from "./you-tube-search/you-tube-search.injectables";
 import {SearchBoxComponent} from "./search-box/search-box.component";
@@ -50,8 +50,7 @@ const routes: Routes = [
 ];
 
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         ArticleComponent,
         RedditComponent,
@@ -78,15 +77,9 @@ const routes: Routes = [
         IconsComponent,
         SimpleCalculatorComponent
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         RouterModule.forRoot(routes),
         FormsModule,
-        HttpClientModule,
-        ReactiveFormsModule
-    ],
-    providers: [EulerService, SimpleCalculatorService, MessageService, ChatMessagesService, youTubeSearcInjectables],
-    bootstrap: [AppComponent]
-})
+        ReactiveFormsModule], providers: [EulerService, SimpleCalculatorService, MessageService, ChatMessagesService, youTubeSearcInjectables, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {
 }

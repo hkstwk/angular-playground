@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from "@angular/core/testing";
 import {SimpleHttpComponent} from "./simple-http.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClient, HttpHandler} from "@angular/common/http";
+import { HttpClient, HttpHandler } from "@angular/common/http";
 
 describe('SimpleHttpComponent', () => {
   let component: SimpleHttpComponent;

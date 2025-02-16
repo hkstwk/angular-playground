@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 // rxjs
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {CalcRequest} from "./CalcRequest";
 import {CalcResponse} from "./CalcResponse";
 import {C} from "@angular/cdk/keycodes";

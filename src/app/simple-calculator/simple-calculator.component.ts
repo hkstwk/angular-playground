@@ -1,5 +1,5 @@
 import {Component, OnInit, Output} from '@angular/core';
-import {HttpErrorResponse} from "@angular/common/http";
+import { HttpErrorResponse } from "@angular/common/http";
 import {CalcResponse} from "./CalcResponse";
 import {SimpleCalculatorService} from "./simple-calculator.service";
 import {FormControl, FormGroup} from "@angular/forms";
