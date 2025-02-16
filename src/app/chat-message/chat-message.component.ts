@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from "@angular/core";
 import {ChatMessage} from "../model/chat-message.model";
 import {User} from "../model/user.model";
 import {UsersService} from "../service/users.service";
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
     selector: 'chat-message',

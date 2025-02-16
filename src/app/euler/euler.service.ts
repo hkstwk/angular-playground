@@ -10,7 +10,7 @@ import {Euler001Response} from "./euler001response";
 @Injectable()
 export class EulerService {
 
-  private readonly URL = "http://localhost:8080/EulerWebService/api/euler/1";
+  private readonly URL = "http://localhost:8080/interest/compound";
 
   constructor(protected httpClient: HttpClient) {
   }

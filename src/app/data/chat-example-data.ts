@@ -5,7 +5,7 @@ import { ChatMessage } from '../model/chat-message.model';
 import { ChatMessagesService } from '../service/chat-messages.service';
 import { ThreadsService } from '../service/threads.service';
 import { UsersService } from '../service/users.service';
-import * as moment from 'moment';
+import moment from 'moment';
 
 // the person using the app us Juliet
 const me: User      = new User('Juliet', 'assets/images/avatars/female-avatar-3.png');
