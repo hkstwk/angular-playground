@@ -24,7 +24,7 @@
         "core-js": "^2.5.4",
         "moment": "^2.24.0",
         "rxjs": "~6.6.7",
-        "uuid": "^3.3.2",
+        "uuid": "^14.0.0",
         "zone.js": "~0.15.0"
     },
     "devDependencies": {
